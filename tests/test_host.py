@@ -56,3 +56,7 @@ class HostTests(unittest.TestCase):
     def test_acm_serial_device(self):
         with patch("glob.glob", side_effect=[["/dev/ttyACM0"], []]):
             self.assertEqual(self.host["find_arduino"](), "/dev/ttyACM0")
+
+    def test_usb_serial_device(self):
+        with patch("glob.glob", side_effect=[[], ["/dev/ttyUSB0"]]):
+            self.assertEqual(self.host["find_arduino"](), "/dev/ttyUSB0")
