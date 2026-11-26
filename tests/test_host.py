@@ -36,3 +36,7 @@ class HostTests(unittest.TestCase):
             self.assertEqual(run.call_args.args[0], ("example",))
             self.assertEqual(run.call_args.kwargs["timeout"], 8)
             self.assertEqual(run.call_args.kwargs["env"]["LC_ALL"], "C")
+
+    def test_command_failure(self):
+        with patch("subprocess.run", return_value=subprocess.CompletedProcess([], 1, "", "failed")), patch("builtins.print"):
+            self.assertIsNone(self.host["command"]("example"))
