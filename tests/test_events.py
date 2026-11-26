@@ -25,3 +25,7 @@ class EventTests(unittest.TestCase):
     def test_previous(self):
         self.event("PREVIOUS")
         self.command.assert_called_once_with("playerctl", "--player=spotify,firefox", "previous")
+
+    def test_mute(self):
+        self.event("MUTE")
+        self.command.assert_called_once_with("wpctl", "set-mute", "@DEFAULT_AUDIO_SINK@", "toggle")
