@@ -385,6 +385,18 @@ The builder reported all functions working after resolving the pin and serial co
 
 The project ends here: a functional personal peripheral, not a maintained platform.
 
+### Optional automated checks
+
+The [test suite](tests/) uses Python's standard library to exercise host commands and network states with mocks, check the firmware's static contract, test autostart installation in an isolated temporary home and verify local documentation links and bilingual structure.
+
+From the repository root, on Linux with Python 3 and Bash:
+
+```bash
+python3 -m unittest discover -s tests -v
+```
+
+These checks do not need an Arduino, PySerial, internet access or desktop commands. They do not replace firmware compilation, physical tests or electrical validation. They were added after the original build and have not yet been executed as part of this revision.
+
 <a id="photos"></a>
 
 ## Photo record

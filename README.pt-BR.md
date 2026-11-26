@@ -385,6 +385,18 @@ Após resolver pinagem e conflito serial, o responsável pela montagem confirmou
 
 O projeto termina aqui: um periférico pessoal funcional, não uma plataforma em manutenção.
 
+### Verificações automatizadas opcionais
+
+A [suíte de testes](tests/) utiliza a biblioteca padrão do Python para exercitar comandos do computador e estados de rede com simulações, verificar o contrato estático do firmware, testar a instalação automática em um diretório pessoal temporário isolado e verificar links locais e a estrutura bilíngue da documentação.
+
+Na raiz do repositório, em Linux com Python 3 e Bash:
+
+```bash
+python3 -m unittest discover -s tests -v
+```
+
+Essas verificações não precisam de Arduino, PySerial, acesso à internet ou comandos da sessão gráfica. Não substituem a compilação do firmware, os testes físicos ou a validação elétrica. Foram adicionadas após a montagem original e ainda não foram executadas nesta revisão.
+
 <a id="photos"></a>
 
 ## Registro fotográfico
