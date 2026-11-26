@@ -38,3 +38,9 @@ class AutostartTests(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertEqual(self.target.read_text(), "keep this")
         self.assertFalse(self.desktop.exists())
+
+    def test_idempotent_installation(self):
+        self.assertEqual(self.run_helper().returncode, 0)
+        original = self.desktop.read_bytes()
+        self.assertEqual(self.run_helper().returncode, 0)
+        self.assertEqual(self.desktop.read_bytes(), original)
