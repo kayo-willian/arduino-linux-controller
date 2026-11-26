@@ -43,3 +43,7 @@ class EventTests(unittest.TestCase):
         self.event("LOCK")
         self.assertEqual(self.command.call_count, 2)
         self.assertEqual(self.command.call_args.args, ("loginctl", "lock-session"))
+
+    def test_volume(self):
+        self.event("VOLUME:50")
+        self.command.assert_called_once_with("wpctl", "set-volume", "-l", "1.0", "@DEFAULT_AUDIO_SINK@", "50%")
