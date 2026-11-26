@@ -39,3 +39,6 @@ class NetworkTests(unittest.TestCase):
 
     def test_failed_connectivity_check(self):
         self.check_state(["connected",None], "U")
+
+    def test_disconnected(self):
+        self.check_state(["disconnected"], "R")
