@@ -40,3 +40,7 @@ class HostTests(unittest.TestCase):
     def test_command_failure(self):
         with patch("subprocess.run", return_value=subprocess.CompletedProcess([], 1, "", "failed")), patch("builtins.print"):
             self.assertIsNone(self.host["command"]("example"))
+
+    def test_command_missing_executable(self):
+        with patch("subprocess.run", side_effect=FileNotFoundError("missing")), patch("builtins.print"):
+            self.assertIsNone(self.host["command"]("missing"))
