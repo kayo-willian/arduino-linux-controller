@@ -47,3 +47,7 @@ class EventTests(unittest.TestCase):
     def test_volume(self):
         self.event("VOLUME:50")
         self.command.assert_called_once_with("wpctl", "set-volume", "-l", "1.0", "@DEFAULT_AUDIO_SINK@", "50%")
+
+    def test_volume_upper_bound(self):
+        self.event("VOLUME:999")
+        self.assertEqual(self.command.call_args.args[-1], "100%")
