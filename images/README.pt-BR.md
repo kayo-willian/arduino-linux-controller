@@ -2,7 +2,7 @@
 
 [English](README.md) · [Início](../README.pt-BR.md)
 
-As fotografias originais documentam a montagem e o dispositivo concluído. Envie os 16 arquivos JPEG renomeados localmente diretamente para esta pasta, mantendo seus nomes. Os READMEs e guias de hardware/desenvolvimento referenciam esses caminhos. As imagens aparecerão depois do upload.
+As fotografias originais documentam a montagem e o dispositivo concluído. Os 16 arquivos JPEG renomeados localmente estão nesta pasta. Os READMEs e guias de hardware/desenvolvimento referenciam esses caminhos.
 
 | Arquivos | Etapa |
 | --- | --- |

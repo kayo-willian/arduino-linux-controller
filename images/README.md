@@ -2,7 +2,7 @@
 
 [Português (Brasil)](README.pt-BR.md) · [Home](../README.md)
 
-The original photographs document the assembly process and completed device. Upload the 16 locally renamed JPEG files directly to this folder, keeping their names unchanged. The READMEs and hardware/development guides refer to these paths. Image links become visible once the files are uploaded.
+The original photographs document the assembly process and completed device. All 16 locally renamed JPEG files are present in this folder. The READMEs and hardware/development guides refer to these paths.
 
 | Files | Stage |
 | --- | --- |
