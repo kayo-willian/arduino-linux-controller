@@ -22,3 +22,10 @@ class FirmwareContractTests(unittest.TestCase):
     def test_button_timing_constants(self):
         values = dict(re.findall(r"const unsigned long (\w+) = (\d+);", SOURCE))
         self.assertEqual(values, {"DEBOUNCE": "35", "LONG_PRESS": "1000", "DOUBLE_CLICK": "350"})
+
+    def test_serial_contract(self):
+        self.assertIn("Serial.begin(9600);", SOURCE)
+        for event in ("PLAY_PAUSE", "PREVIOUS", "NEXT", "MUTE", "LOCK"):
+            self.assertIn(f'sendEvent("{event}")', SOURCE)
+        self.assertIn('Serial.println("READY")', SOURCE)
+        self.assertIn('Serial.print("VOLUME:")', SOURCE)
