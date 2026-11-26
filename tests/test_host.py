@@ -64,3 +64,7 @@ class HostTests(unittest.TestCase):
     def test_ambiguous_serial_devices(self):
         with patch("glob.glob", side_effect=[["/dev/ttyACM0"], ["/dev/ttyUSB0"]]):
             self.assertIsNone(self.host["find_arduino"]())
+
+    def test_multiple_usb_devices(self):
+        with patch("glob.glob", side_effect=[[], ["/dev/ttyUSB0", "/dev/ttyUSB1"]]):
+            self.assertIsNone(self.host["find_arduino"]())
