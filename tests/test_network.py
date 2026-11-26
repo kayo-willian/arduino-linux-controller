@@ -36,3 +36,6 @@ class NetworkTests(unittest.TestCase):
 
     def test_unknown_connectivity(self):
         self.check_state(["connected","unknown"], "U")
+
+    def test_failed_connectivity_check(self):
+        self.check_state(["connected",None], "U")
