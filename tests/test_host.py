@@ -29,3 +29,10 @@ def load_host():
 class HostTests(unittest.TestCase):
     def setUp(self):
         self.host = load_host()
+
+    def test_command_success(self):
+        with patch("subprocess.run", return_value=subprocess.CompletedProcess([], 0, "  ok\n", "")) as run:
+            self.assertEqual(self.host["command"]("example"), "ok")
+            self.assertEqual(run.call_args.args[0], ("example",))
+            self.assertEqual(run.call_args.kwargs["timeout"], 8)
+            self.assertEqual(run.call_args.kwargs["env"]["LC_ALL"], "C")
