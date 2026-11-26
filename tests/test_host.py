@@ -48,3 +48,7 @@ class HostTests(unittest.TestCase):
     def test_command_timeout(self):
         with patch("subprocess.run", side_effect=subprocess.TimeoutExpired("example", 8)), patch("builtins.print"):
             self.assertIsNone(self.host["command"]("example"))
+
+    def test_no_serial_device(self):
+        with patch("glob.glob", side_effect=[[], []]):
+            self.assertIsNone(self.host["find_arduino"]())
