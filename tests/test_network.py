@@ -30,3 +30,6 @@ class NetworkTests(unittest.TestCase):
 
     def test_captive_portal(self):
         self.check_state(["connected","portal"], "Y")
+
+    def test_no_internet(self):
+        self.check_state(["connected","none"], "Y")
