@@ -14,3 +14,7 @@ class FirmwareContractTests(unittest.TestCase):
             "BTN_GREEN": "2", "BTN_YELLOW": "3", "BTN_RED": "4",
             "LED_GREEN": "8", "LED_RED": "9", "POT": "A0",
         })
+
+    def test_input_pullups(self):
+        for name in ("BTN_GREEN", "BTN_YELLOW", "BTN_RED"):
+            self.assertIn(f"pinMode({name}, INPUT_PULLUP);", SOURCE)
