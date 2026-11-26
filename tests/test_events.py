@@ -37,3 +37,9 @@ class EventTests(unittest.TestCase):
             "--object-path", "/org/gnome/ScreenSaver",
             "--method", "org.gnome.ScreenSaver.Lock"
         )
+
+    def test_lock_fallback(self):
+        self.command.side_effect = [None, ""]
+        self.event("LOCK")
+        self.assertEqual(self.command.call_count, 2)
+        self.assertEqual(self.command.call_args.args, ("loginctl", "lock-session"))
