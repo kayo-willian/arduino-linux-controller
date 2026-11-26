@@ -48,3 +48,6 @@ class NetworkTests(unittest.TestCase):
 
     def test_connecting(self):
         self.check_state(["connecting"], "U")
+
+    def test_failed_state_check(self):
+        self.check_state([None], "U")
