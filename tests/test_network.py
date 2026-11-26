@@ -42,3 +42,6 @@ class NetworkTests(unittest.TestCase):
 
     def test_disconnected(self):
         self.check_state(["disconnected"], "R")
+
+    def test_asleep(self):
+        self.check_state(["asleep"], "R")
