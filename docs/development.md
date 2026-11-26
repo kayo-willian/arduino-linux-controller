@@ -20,7 +20,7 @@ The first desktop-controller proposal had six dedicated buttons, three network L
 | --- | --- |
 | USB-B connector warming and intermittent shutdown | The board previously worked for hours. Cable damage, bad connector/solder, hub power and a short against a metal table were considered. Moving the board and isolating it was advised; operation resumed. Cause not established. |
 | Small workspace | The Uno cannot plug into the breadboard like a Nano. The breadboard was placed horizontally, with the board behind it. An insulating support is required. |
-| Illustrations misleading | AI-generated images depicted inaccurate holes, pin labels and potentiometer wiring. They were rejected as wiring authority; the electrical pinout and actual component tests took precedence. |
+| Illustrations misleading | Preliminary wiring illustrations contained inaccurate hole positions, pin labels and potentiometer connections. The final electrical pinout and physical component tests took precedence. |
 | Resistor inventory | Actual values were 200 Ω, 1 kΩ and 10 kΩ, not the initially assumed 330 Ω. 1 kΩ was selected for indicators; current limiting works on either side of an LED in series. |
 | Long resistor leads | Leads can be bent carefully, without pulling them out or allowing shorts. No cutting was required for the final plan. |
 | Buttons difficult to press | Caps collided with six switches; three switches solved spacing. Long ground jumpers obstructed access; the final physical routing was changed, including passing wires beneath the breadboard. |

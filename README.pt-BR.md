@@ -165,7 +165,7 @@ D9 ── LED vermelho (+ para -) ── 1kΩ ── GND
               cursor A0
 ```
 
-O resistor de 1 kΩ foi escolhido para brilho moderado dos indicadores. Também havia resistores de 200 Ω, não selecionados para as instruções finais. Não use imagens fotográficas geradas por IA como referência de pinagem.
+O resistor de 1 kΩ foi escolhido para brilho moderado dos indicadores. Também havia resistores de 200 Ω, não selecionados para as instruções finais. Utilize a pinagem definitiva e as conexões elétricas acima como referência de montagem.
 
 <a id="install"></a>
 
@@ -281,7 +281,7 @@ Consulte o [diário de desenvolvimento](#debug) para conhecer os problemas reais
 | --- | --- |
 | Aquecimento do USB-B e desligamentos intermitentes | A placa já havia funcionado por horas. Foram considerados cabo defeituoso, mau contato/solda, alimentação pelo hub e curto contra mesa metálica. Mover e isolar a placa foi recomendado; o funcionamento retornou. Causa não estabelecida. |
 | Espaço reduzido | O Uno não encaixa na protoboard como um Nano. A protoboard ficou na horizontal, com a placa atrás. É necessária uma base isolante. |
-| Ilustrações confusas | Imagens geradas por IA mostraram furos, rótulos de pinos e ligações do potenciômetro incorretos. Foram descartadas como referência elétrica; prevaleceram pinagem e testes reais. |
+| Ilustrações confusas | Ilustrações preliminares apresentaram imprecisões nas posições dos furos, nos rótulos dos pinos e nas ligações do potenciômetro. Prevaleceram a pinagem definitiva e os testes físicos dos componentes. |
 | Inventário de resistores | Os valores reais eram 200 Ω, 1 kΩ e 10 kΩ, e não os 330 Ω inicialmente presumidos. Escolheu-se 1 kΩ para indicadores; o resistor limita a corrente em qualquer lado do LED em série. |
 | Pernas longas dos resistores | Podem ser dobradas com cuidado, sem arrancá-las ou provocar contato indevido. Não foi necessário cortar para o plano final. |
 | Dificuldade de pressionar botões | As capas colidiam com seis botões; três resolveram o espaço. Jumpers longos de GND dificultavam o acesso, levando a uma mudança de rota, inclusive por baixo da protoboard. |
@@ -363,10 +363,14 @@ Consulte também o [índice de fotos](images/README.pt-BR.md).
 
 ## Autoria e licença
 
-### Desenvolvimento
+### Autoria
 
-Eu realizei a montagem, alterei as ligações, gravei o firmware e testei o dispositivo físico. O ChatGPT auxiliou na geração dos códigos em C++ e Python, na resolução de problemas e na documentação. O código publicado reconstrói a versão funcional a partir da conversa de desenvolvimento; não é uma exportação byte a byte dos arquivos locais.
+Eu realizei a montagem, alterei as ligações, gravei o firmware e testei o dispositivo físico. O código publicado reconstrói a versão funcional a partir da conversa de desenvolvimento; não é uma exportação byte a byte dos arquivos locais.
 
 As versões separadas da documentação continuam disponíveis para consulta: [hardware](docs/hardware.pt-BR.md), [instalação](docs/installation.pt-BR.md) e [diário de desenvolvimento](docs/development.pt-BR.md). Todo o conteúdo necessário para reproduzir o projeto está neste README.
 
 Licenciado sob a [MIT](LICENSE).
+
+### Créditos
+
+O ChatGPT (IA) auxiliou na elaboração dos códigos em C++ e Python, na resolução de problemas e na documentação técnica.

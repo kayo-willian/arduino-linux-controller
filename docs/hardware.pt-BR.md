@@ -42,7 +42,7 @@ D9 ── LED vermelho (+ para -) ── 1kΩ ── GND
               cursor A0
 ```
 
-O resistor de 1 kΩ foi escolhido para brilho moderado dos indicadores. Também havia resistores de 200 Ω, não selecionados para as instruções finais. Não use imagens fotográficas geradas por IA como referência de pinagem.
+O resistor de 1 kΩ foi escolhido para brilho moderado dos indicadores. Também havia resistores de 200 Ω, não selecionados para as instruções finais. Utilize a pinagem definitiva e as conexões elétricas acima como referência de montagem.
 
 ## Fotografias da montagem
 

@@ -42,7 +42,7 @@ D9 ── LED red   (+ to -) ── 1kΩ ── GND
               wiper A0
 ```
 
-A 1 kΩ resistor was selected for modest indicator brightness; 200 Ω resistors were also available but not selected for the final instructions. Do not rely on generated photorealistic diagrams for pin placement.
+A 1 kΩ resistor was selected for modest indicator brightness; 200 Ω resistors were also available but not selected for the final instructions. Use the final pinout and electrical connections above as the wiring reference.
 
 ## Build photographs
 

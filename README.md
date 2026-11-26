@@ -165,7 +165,7 @@ D9 ── LED red   (+ to -) ── 1kΩ ── GND
               wiper A0
 ```
 
-A 1 kΩ resistor was selected for modest indicator brightness; 200 Ω resistors were also available but not selected for the final instructions. Do not rely on generated photorealistic diagrams for pin placement.
+A 1 kΩ resistor was selected for modest indicator brightness; 200 Ω resistors were also available but not selected for the final instructions. Use the final pinout and electrical connections above as the wiring reference.
 
 <a id="install"></a>
 
@@ -281,7 +281,7 @@ See the [development log](#debug) for the actual troubleshooting history.
 | --- | --- |
 | USB-B connector warming and intermittent shutdown | The board previously worked for hours. Cable damage, bad connector/solder, hub power and a short against a metal table were considered. Moving the board and isolating it was advised; operation resumed. Cause not established. |
 | Small workspace | The Uno cannot plug into the breadboard like a Nano. The breadboard was placed horizontally, with the board behind it. An insulating support is required. |
-| Illustrations misleading | AI-generated images depicted inaccurate holes, pin labels and potentiometer wiring. They were rejected as wiring authority; the electrical pinout and actual component tests took precedence. |
+| Illustrations misleading | Preliminary wiring illustrations contained inaccurate hole positions, pin labels and potentiometer connections. The final electrical pinout and physical component tests took precedence. |
 | Resistor inventory | Actual values were 200 Ω, 1 kΩ and 10 kΩ, not the initially assumed 330 Ω. 1 kΩ was selected for indicators; current limiting works on either side of an LED in series. |
 | Long resistor leads | Leads can be bent carefully, without pulling them out or allowing shorts. No cutting was required for the final plan. |
 | Buttons difficult to press | Caps collided with six switches; three switches solved spacing. Long ground jumpers obstructed access; the final physical routing was changed, including passing wires beneath the breadboard. |
@@ -363,10 +363,14 @@ See the [photo index](images/README.md) as well.
 
 ## Authorship and license
 
-### Development approach
+### Authorship
 
-I assembled the circuit, changed the wiring, uploaded the firmware and tested the physical device. ChatGPT helped generate the C++ and Python code, troubleshoot errors and prepare the documentation. The published source reconstructs the working version from the development conversation; it is not a byte-for-byte export of my local files.
+I assembled the circuit, changed the wiring, uploaded the firmware and tested the physical device. The published source reconstructs the working version from the development conversation; it is not a byte-for-byte export of my local files.
 
 Separate reference pages remain available: [hardware](docs/hardware.md), [installation](docs/installation.md) and [development log](docs/development.md). All information needed to reproduce the project is included in this README.
 
 Licensed under the [MIT License](LICENSE).
+
+### Credits
+
+ChatGPT (AI) assisted with the C++ and Python code, troubleshooting, and technical documentation.

@@ -20,7 +20,7 @@ A primeira proposta de controlador tinha seis botões dedicados, três LEDs de r
 | --- | --- |
 | Aquecimento do USB-B e desligamentos intermitentes | A placa já havia funcionado por horas. Foram considerados cabo defeituoso, mau contato/solda, alimentação pelo hub e curto contra mesa metálica. Mover e isolar a placa foi recomendado; o funcionamento retornou. Causa não estabelecida. |
 | Espaço reduzido | O Uno não encaixa na protoboard como um Nano. A protoboard ficou na horizontal, com a placa atrás. É necessária uma base isolante. |
-| Ilustrações confusas | Imagens geradas por IA mostraram furos, rótulos de pinos e ligações do potenciômetro incorretos. Foram descartadas como referência elétrica; prevaleceram pinagem e testes reais. |
+| Ilustrações confusas | Ilustrações preliminares apresentaram imprecisões nas posições dos furos, nos rótulos dos pinos e nas ligações do potenciômetro. Prevaleceram a pinagem definitiva e os testes físicos dos componentes. |
 | Inventário de resistores | Os valores reais eram 200 Ω, 1 kΩ e 10 kΩ, e não os 330 Ω inicialmente presumidos. Escolheu-se 1 kΩ para indicadores; o resistor limita a corrente em qualquer lado do LED em série. |
 | Pernas longas dos resistores | Podem ser dobradas com cuidado, sem arrancá-las ou provocar contato indevido. Não foi necessário cortar para o plano final. |
 | Dificuldade de pressionar botões | As capas colidiam com seis botões; três resolveram o espaço. Jumpers longos de GND dificultavam o acesso, levando a uma mudança de rota, inclusive por baixo da protoboard. |
