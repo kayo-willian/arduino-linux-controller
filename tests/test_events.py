@@ -55,3 +55,7 @@ class EventTests(unittest.TestCase):
     def test_volume_lower_bound(self):
         self.event("VOLUME:-12")
         self.assertEqual(self.command.call_args.args[-1], "0%")
+
+    def test_malformed_volume(self):
+        self.event("VOLUME:not-a-number")
+        self.command.assert_not_called()
