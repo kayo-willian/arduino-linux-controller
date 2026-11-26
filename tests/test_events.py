@@ -17,3 +17,7 @@ class EventTests(unittest.TestCase):
     def test_play_pause(self):
         self.event("PLAY_PAUSE")
         self.command.assert_called_once_with("playerctl", "--player=spotify,firefox", "play-pause")
+
+    def test_next(self):
+        self.event("NEXT")
+        self.command.assert_called_once_with("playerctl", "--player=spotify,firefox", "next")
