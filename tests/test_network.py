@@ -27,3 +27,6 @@ class NetworkTests(unittest.TestCase):
 
     def test_limited_connectivity(self):
         self.check_state(["connected","limited"], "Y")
+
+    def test_captive_portal(self):
+        self.check_state(["connected","portal"], "Y")
