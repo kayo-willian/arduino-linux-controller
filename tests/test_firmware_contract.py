@@ -18,3 +18,7 @@ class FirmwareContractTests(unittest.TestCase):
     def test_input_pullups(self):
         for name in ("BTN_GREEN", "BTN_YELLOW", "BTN_RED"):
             self.assertIn(f"pinMode({name}, INPUT_PULLUP);", SOURCE)
+
+    def test_button_timing_constants(self):
+        values = dict(re.findall(r"const unsigned long (\w+) = (\d+);", SOURCE))
+        self.assertEqual(values, {"DEBOUNCE": "35", "LONG_PRESS": "1000", "DOUBLE_CLICK": "350"})
