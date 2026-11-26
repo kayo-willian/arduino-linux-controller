@@ -7,7 +7,7 @@
 ![Python](https://img.shields.io/badge/Python-host-3776AB?style=flat-square&logo=python&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)
 
-**English** | [Português (Brasil)](README.pt-BR.md)
+**English** | [Português (Brasil)](docs/pt-BR/README.md)
 
 A small physical desktop controller for Ubuntu, built from an unused Arduino Uno-compatible starter kit. I wanted something useful in everyday life rather than another unfinished lab. The final device controls music, system audio and screen locking, and displays the host's network connectivity through two LEDs.
 
@@ -105,14 +105,20 @@ arduino-linux-controller/
 ├── diagnostics/components/components.ino
 ├── installation/enable-autostart.sh
 ├── docs/
-│   ├── hardware.md / hardware.pt-BR.md
-│   ├── installation.md / installation.pt-BR.md
-│   └── development.md / development.pt-BR.md
+│   ├── hardware.md
+│   ├── installation.md
+│   ├── development.md
+│   └── pt-BR/
+│       ├── README.md
+│       ├── componentes-e-montagem.md
+│       ├── instalacao.md
+│       ├── desenvolvimento.md
+│       └── registro-fotografico.md
 ├── images/
 │   ├── arduino-01.jpeg ... arduino-16.jpeg
-│   └── README.md / README.pt-BR.md
+│   └── README.md
+├── tests/
 ├── README.md
-├── README.pt-BR.md
 ├── LICENSE
 └── .gitignore
 ```

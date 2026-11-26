@@ -1,8 +1,8 @@
 # Photo record
 
-[Português (Brasil)](README.pt-BR.md) · [Home](../README.md)
+[Português (Brasil)](../docs/pt-BR/registro-fotografico.md) · [Home](../README.md)
 
-The original photographs document the assembly process and completed device. All 16 locally renamed JPEG files are present in this folder. The READMEs and hardware/development guides refer to these paths.
+The original photographs document the assembly process and completed device. All 16 locally renamed JPEG files are present in the [images/](./) folder. The READMEs and hardware/development guides refer to these paths.
 
 | Files | Stage |
 | --- | --- |

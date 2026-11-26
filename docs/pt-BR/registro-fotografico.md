@@ -1,8 +1,8 @@
 # Registro fotográfico
 
-[English](README.md) · [Início](../README.pt-BR.md)
+[English](../../images/README.md) · [Início](README.md)
 
-As fotografias originais documentam a montagem e o dispositivo concluído. Os 16 arquivos JPEG renomeados localmente estão nesta pasta. Os READMEs e guias de hardware/desenvolvimento referenciam esses caminhos.
+As fotografias originais documentam a montagem e o dispositivo concluído. Os 16 arquivos JPEG renomeados localmente estão na pasta [images/](../../images/). Os READMEs e guias de hardware/desenvolvimento referenciam esses caminhos.
 
 | Arquivos | Etapa |
 | --- | --- |
@@ -18,10 +18,10 @@ O conjunto final também contém uma foto apenas da placa e ângulos repetidos; 
 
 ## Imagens selecionadas
 
-![Montagem inicial](arduino-03.jpeg)
+![Montagem inicial](../../images/arduino-03.jpeg)
 
-![Primeiro protótipo](arduino-05.jpeg)
+![Primeiro protótipo](../../images/arduino-05.jpeg)
 
-![Controlador final](arduino-08.jpeg)
+![Controlador final](../../images/arduino-08.jpeg)
 
 As fotografias foram preparadas localmente com ExifTool para remover metadados incorporados antes da renomeação. O conteúdo visual original foi mantido.

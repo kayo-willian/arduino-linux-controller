@@ -5,11 +5,11 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 PAIRS = [
-    ("README.md", "README.pt-BR.md"),
-    ("docs/hardware.md", "docs/hardware.pt-BR.md"),
-    ("docs/installation.md", "docs/installation.pt-BR.md"),
-    ("docs/development.md", "docs/development.pt-BR.md"),
-    ("images/README.md", "images/README.pt-BR.md"),
+    ("README.md", "docs/pt-BR/README.md"),
+    ("docs/hardware.md", "docs/pt-BR/componentes-e-montagem.md"),
+    ("docs/installation.md", "docs/pt-BR/instalacao.md"),
+    ("docs/development.md", "docs/pt-BR/desenvolvimento.md"),
+    ("images/README.md", "docs/pt-BR/registro-fotografico.md"),
 ]
 
 
@@ -31,5 +31,10 @@ class DocumentationTests(unittest.TestCase):
                 self.assertEqual(re.findall(r"^(#+) ", a, re.M), re.findall(r"^(#+) ", b, re.M))
                 self.assertEqual(re.findall(r"```bash\n(.*?)```", a, re.S),
                                  re.findall(r"```bash\n(.*?)```", b, re.S))
-                self.assertEqual(re.findall(r"\]\(([^)]*arduino-\d+\.jpeg)\)", a),
-                                 re.findall(r"\]\(([^)]*arduino-\d+\.jpeg)\)", b))
+                def photo_targets(path, content):
+                    return [
+                        ((ROOT / path).parent / target).resolve()
+                        for target in re.findall(r"\]\(([^)]*arduino-\d+\.jpeg)\)", content)
+                    ]
+
+                self.assertEqual(photo_targets(en, a), photo_targets(pt, b))

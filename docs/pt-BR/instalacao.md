@@ -1,6 +1,6 @@
 # Instalação e utilização
 
-[English](installation.md) · [Início](../README.pt-BR.md)
+[English](../installation.md) · [Início](README.md)
 
 ## 1. Preparar o Ubuntu
 
@@ -16,7 +16,7 @@ Saia e entre na sessão para aplicar a associação ao grupo. Não rode o progra
 
 ## 2. Gravar o firmware
 
-Abra [painel_ubuntu.ino](../firmware/painel_ubuntu/painel_ubuntu.ino) no Arduino IDE. Selecione Arduino Uno e a porta serial correta (originalmente /dev/ttyUSB0) e grave. Encerre o Python antes de gravar e feche o monitor serial e a IDE antes de executar o Python. Somente um programa deve utilizar a porta.
+Abra [painel_ubuntu.ino](../../firmware/painel_ubuntu/painel_ubuntu.ino) no Arduino IDE. Selecione Arduino Uno e a porta serial correta (originalmente /dev/ttyUSB0) e grave. Encerre o Python antes de gravar e feche o monitor serial e a IDE antes de executar o Python. Somente um programa deve utilizar a porta.
 
 Os LEDs verde e vermelho acendem sequencialmente na inicialização. Em seguida, o vermelho pisca até receber o estado da conexão do computador.
 
@@ -79,7 +79,7 @@ As verificações do NetworkManager ocorrem aproximadamente a cada 15 segundos, 
 
 ## 5. Inicialização automática no login
 
-Depois dos testes manuais, encerre o processo com Ctrl+C. Execute [enable-autostart.sh](../installation/enable-autostart.sh) na raiz do repositório:
+Depois dos testes manuais, encerre o processo com Ctrl+C. Execute [enable-autostart.sh](../../installation/enable-autostart.sh) na raiz do repositório:
 
 ```bash
 bash installation/enable-autostart.sh
@@ -110,4 +110,4 @@ nohup python3 -u ~/painel-ubuntu.py > ~/.painel-ubuntu.log 2>&1 &
 
 O comando de remoção da inicialização automática não encerra o processo atual. Se o conector USB aquecer anormalmente, desconecte-o imediatamente e investigue antes de continuar.
 
-Consulte o [diário de desenvolvimento](development.pt-BR.md) para conhecer os problemas reais.
+Consulte o [diário de desenvolvimento](desenvolvimento.md) para conhecer os problemas reais.

@@ -7,13 +7,13 @@
 ![Python](https://img.shields.io/badge/Python-computador-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Licença](https://img.shields.io/badge/licen%C3%A7a-MIT-blue?style=flat-square)
 
-[English](README.md) | **Português (Brasil)**
+[English](../../README.md) | **Português (Brasil)**
 
 Um pequeno controlador físico para Ubuntu, montado com um kit compatível com Arduino Uno que estava parado. Eu queria algo útil no dia a dia, em vez de outro laboratório inacabado. O dispositivo controla músicas, áudio e bloqueio de tela, além de indicar a conectividade do computador por dois LEDs.
 
-![Controlador finalizado](images/arduino-08.jpeg)
+![Controlador finalizado](../../images/arduino-08.jpeg)
 
-*Montagem final: três botões, dois LEDs e um potenciômetro giratório B10K. A fotografia integra o [registro de montagem](images/README.pt-BR.md).*
+*Montagem final: três botões, dois LEDs e um potenciômetro giratório B10K. A fotografia integra o [registro de montagem](registro-fotografico.md).*
 
 ## Índice
 
@@ -73,9 +73,9 @@ A ideia inicial era um laboratório de segurança embarcada: alarme de gabinete 
 
 A primeira proposta de controlador tinha seis botões dedicados, três LEDs de rede e buzzer/display opcionais. Os seis botões grandes cabiam na protoboard de 400 furos, mas as capas interferiam entre si. O projeto passou para três botões com toques curtos, duplos e longos, mais um potenciômetro B10K de volume. O terceiro LED foi removido posteriormente. Nenhuma peça adicional foi comprada para esta montagem.
 
-![Teste USB inicial](images/arduino-01.jpeg)
+![Teste USB inicial](../../images/arduino-01.jpeg)
 
-![Teste de espaço com seis botões](images/arduino-02.jpeg)
+![Teste de espaço com seis botões](../../images/arduino-02.jpeg)
 
 <a id="stack"></a>
 
@@ -105,19 +105,25 @@ arduino-linux-controller/
 ├── diagnostics/components/components.ino
 ├── installation/enable-autostart.sh
 ├── docs/
-│   ├── hardware.md / hardware.pt-BR.md
-│   ├── installation.md / installation.pt-BR.md
-│   └── development.md / development.pt-BR.md
+│   ├── hardware.md
+│   ├── installation.md
+│   ├── development.md
+│   └── pt-BR/
+│       ├── README.md
+│       ├── componentes-e-montagem.md
+│       ├── instalacao.md
+│       ├── desenvolvimento.md
+│       └── registro-fotografico.md
 ├── images/
 │   ├── arduino-01.jpeg ... arduino-16.jpeg
-│   └── README.md / README.pt-BR.md
+│   └── README.md
+├── tests/
 ├── README.md
-├── README.pt-BR.md
 ├── LICENSE
 └── .gitignore
 ```
 
-**Códigos completos:** [firmware C++](firmware/painel_ubuntu/painel_ubuntu.ino), [programa Python](software/painel-ubuntu.py), [sketch de diagnóstico](diagnostics/components/components.ino) e [auxiliar de autostart](installation/enable-autostart.sh).
+**Códigos completos:** [firmware C++](../../firmware/painel_ubuntu/painel_ubuntu.ino), [programa Python](../../software/painel-ubuntu.py), [sketch de diagnóstico](../../diagnostics/components/components.ino) e [auxiliar de autostart](../../installation/enable-autostart.sh).
 
 <a id="hardware"></a>
 
@@ -205,7 +211,7 @@ Saia e entre na sessão para aplicar a associação ao grupo. Não rode o progra
 
 ### 2. Gravar o firmware
 
-Abra [painel_ubuntu.ino](firmware/painel_ubuntu/painel_ubuntu.ino) no Arduino IDE. Selecione Arduino Uno e a porta serial correta (originalmente /dev/ttyUSB0) e grave. Encerre o Python antes de gravar e feche o monitor serial e a IDE antes de executar o Python. Somente um programa deve utilizar a porta.
+Abra [painel_ubuntu.ino](../../firmware/painel_ubuntu/painel_ubuntu.ino) no Arduino IDE. Selecione Arduino Uno e a porta serial correta (originalmente /dev/ttyUSB0) e grave. Encerre o Python antes de gravar e feche o monitor serial e a IDE antes de executar o Python. Somente um programa deve utilizar a porta.
 
 Os LEDs verde e vermelho acendem sequencialmente na inicialização. Em seguida, o vermelho pisca até receber o estado da conexão do computador.
 
@@ -268,7 +274,7 @@ As verificações do NetworkManager ocorrem aproximadamente a cada 15 segundos, 
 
 ### 5. Inicialização automática no login
 
-Depois dos testes manuais, encerre o processo com Ctrl+C. Execute [enable-autostart.sh](installation/enable-autostart.sh) na raiz do repositório:
+Depois dos testes manuais, encerre o processo com Ctrl+C. Execute [enable-autostart.sh](../../installation/enable-autostart.sh) na raiz do repositório:
 
 ```bash
 bash installation/enable-autostart.sh
@@ -319,11 +325,11 @@ Consulte o [diário de desenvolvimento](#debug) para conhecer os problemas reais
 | Inversão de pinos | Inicialmente o botão verde estava em D4 e o vermelho em D2; LED verde em D10 e vermelho em D8. A troca física produziu verde D2/D8 e vermelho D4/D10 inicialmente. Após retirar o indicador amarelo, o LED vermelho terminou no D9, não D10. |
 | Posição do potenciômetro | Três grupos distintos de furos, perna central em A0 e externas em 5V/GND. Sem resistor extra de 10 kΩ. |
 
-![Primeira disposição de três botões](images/arduino-03.jpeg)
+![Primeira disposição de três botões](../../images/arduino-03.jpeg)
 
-![Ligações em andamento](images/arduino-04.jpeg)
+![Ligações em andamento](../../images/arduino-04.jpeg)
 
-![Componentes iniciais montados](images/arduino-05.jpeg)
+![Componentes iniciais montados](../../images/arduino-05.jpeg)
 
 ### Diagnóstico do firmware e do Ubuntu
 
@@ -364,7 +370,7 @@ A saída original dos erros foi preservada para facilitar o diagnóstico. As men
 | `Arduino desconectado` / `Arduino conectado` | Arduino desconectado / conectado |
 | `READY` | Firmware pronto |
 
-Testes isolados úteis: encerre o Python primeiro, envie G/R/U pelo monitor serial em 9600 baud (timeout dos LEDs de 7 s); teste os botões e A0 com o [sketch de diagnóstico](diagnostics/components/components.ino); grave novamente o firmware principal ao terminar. O diagnóstico incluído combina os testes anteriormente sugeridos para a pinagem final, não é um sketch validado separadamente.
+Testes isolados úteis: encerre o Python primeiro, envie G/R/U pelo monitor serial em 9600 baud (timeout dos LEDs de 7 s); teste os botões e A0 com o [sketch de diagnóstico](../../diagnostics/components/components.ino); grave novamente o firmware principal ao terminar. O diagnóstico incluído combina os testes anteriormente sugeridos para a pinagem final, não é um sketch validado separadamente.
 
 <a id="validation"></a>
 
@@ -387,7 +393,7 @@ O projeto termina aqui: um periférico pessoal funcional, não uma plataforma em
 
 ### Verificações automatizadas opcionais
 
-A [suíte de testes](tests/) utiliza a biblioteca padrão do Python para exercitar comandos do computador e estados de rede com simulações, verificar o contrato estático do firmware, testar a instalação automática em um diretório pessoal temporário isolado e verificar links locais e a estrutura bilíngue da documentação.
+A [suíte de testes](../../tests/) utiliza a biblioteca padrão do Python para exercitar comandos do computador e estados de rede com simulações, verificar o contrato estático do firmware, testar a instalação automática em um diretório pessoal temporário isolado e verificar links locais e a estrutura bilíngue da documentação.
 
 Na raiz do repositório, em Linux com Python 3 e Bash:
 
@@ -401,18 +407,18 @@ Essas verificações não precisam de Arduino, PySerial, acesso à internet ou c
 
 ## Registro fotográfico
 
-As 16 fotografias reais foram preservadas na pasta [images/](images/). As primeiras imagens registram a montagem em andamento; o conjunto final contém diferentes ângulos e uma foto da placa isolada. Imagens antigas não representam a pinagem definitiva.
+As 16 fotografias reais foram preservadas na pasta [images/](../../images/). As primeiras imagens registram a montagem em andamento; o conjunto final contém diferentes ângulos e uma foto da placa isolada. Imagens antigas não representam a pinagem definitiva.
 
 | Conjunto | Fotografias |
 | --- | --- |
-| Primeiros testes e montagem | [01](images/arduino-01.jpeg) · [02](images/arduino-02.jpeg) · [03](images/arduino-03.jpeg) · [04](images/arduino-04.jpeg) · [05](images/arduino-05.jpeg) · [06](images/arduino-06.jpeg) |
-| Sessão final | [07](images/arduino-07.jpeg) · [08](images/arduino-08.jpeg) · [09](images/arduino-09.jpeg) · [10](images/arduino-10.jpeg) · [11](images/arduino-11.jpeg) · [12](images/arduino-12.jpeg) · [13](images/arduino-13.jpeg) · [14](images/arduino-14.jpeg) · [15](images/arduino-15.jpeg) · [16](images/arduino-16.jpeg) |
+| Primeiros testes e montagem | [01](../../images/arduino-01.jpeg) · [02](../../images/arduino-02.jpeg) · [03](../../images/arduino-03.jpeg) · [04](../../images/arduino-04.jpeg) · [05](../../images/arduino-05.jpeg) · [06](../../images/arduino-06.jpeg) |
+| Sessão final | [07](../../images/arduino-07.jpeg) · [08](../../images/arduino-08.jpeg) · [09](../../images/arduino-09.jpeg) · [10](../../images/arduino-10.jpeg) · [11](../../images/arduino-11.jpeg) · [12](../../images/arduino-12.jpeg) · [13](../../images/arduino-13.jpeg) · [14](../../images/arduino-14.jpeg) · [15](../../images/arduino-15.jpeg) · [16](../../images/arduino-16.jpeg) |
 
 | Vista frontal | Outra vista do dispositivo |
 | --- | --- |
-| ![Painel concluído](images/arduino-08.jpeg) | ![Outra vista do painel](images/arduino-10.jpeg) |
+| ![Painel concluído](../../images/arduino-08.jpeg) | ![Outra vista do painel](../../images/arduino-10.jpeg) |
 
-Consulte também o [índice de fotos](images/README.pt-BR.md).
+Consulte também o [índice de fotos](registro-fotografico.md).
 
 <a id="license"></a>
 
@@ -422,9 +428,9 @@ Consulte também o [índice de fotos](images/README.pt-BR.md).
 
 Eu realizei a montagem, alterei as ligações, gravei o firmware e testei o dispositivo físico. O código publicado reconstrói a versão funcional com base nos registros de desenvolvimento; não é uma cópia byte a byte dos arquivos locais.
 
-As versões separadas da documentação continuam disponíveis para consulta: [hardware](docs/hardware.pt-BR.md), [instalação](docs/installation.pt-BR.md) e [diário de desenvolvimento](docs/development.pt-BR.md). Todo o conteúdo necessário para reproduzir o projeto está neste README.
+As versões separadas da documentação continuam disponíveis para consulta: [hardware](componentes-e-montagem.md), [instalação](instalacao.md) e [diário de desenvolvimento](desenvolvimento.md). Todo o conteúdo necessário para reproduzir o projeto está neste README.
 
-Licenciado sob a [MIT](LICENSE).
+Licenciado sob a [MIT](../../LICENSE).
 
 ### Créditos
 

@@ -1,6 +1,6 @@
 # Development log and troubleshooting
 
-[Português (Brasil)](development.pt-BR.md) · [Home](../README.md)
+[Português (Brasil)](pt-BR/desenvolvimento.md) · [Home](../README.md)
 
 **26 November 2026 — one physical prototype, completed.** This is a retrospective of the actual development conversation, not a laboratory certification. Confirmed observations are distinguished from suggestions and unresolved hypotheses.
 

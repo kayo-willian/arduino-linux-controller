@@ -1,6 +1,6 @@
 # Installation and usage
 
-[Português (Brasil)](installation.pt-BR.md) · [Home](../README.md)
+[Português (Brasil)](pt-BR/instalacao.md) · [Home](../README.md)
 
 ## 1. Prepare Ubuntu
 

@@ -1,6 +1,6 @@
 # Diário de desenvolvimento e diagnóstico
 
-[English](development.md) · [Início](../README.pt-BR.md)
+[English](../development.md) · [Início](README.md)
 
 **26 de novembro de 2026 — um protótipo físico concluído.** Registro retrospectivo da conversa de desenvolvimento, não uma certificação laboratorial. Observações confirmadas, sugestões e hipóteses não conclusivas são separadas.
 
@@ -10,9 +10,9 @@ A ideia inicial era um laboratório de segurança embarcada: alarme de gabinete 
 
 A primeira proposta de controlador tinha seis botões dedicados, três LEDs de rede e buzzer/display opcionais. Os seis botões grandes cabiam na protoboard de 400 furos, mas as capas interferiam entre si. O projeto passou para três botões com toques curtos, duplos e longos, mais um potenciômetro B10K de volume. O terceiro LED foi removido posteriormente. Nenhuma peça adicional foi comprada para esta montagem.
 
-![Teste USB inicial](../images/arduino-01.jpeg)
+![Teste USB inicial](../../images/arduino-01.jpeg)
 
-![Teste de espaço com seis botões](../images/arduino-02.jpeg)
+![Teste de espaço com seis botões](../../images/arduino-02.jpeg)
 
 ## Montagem física
 
@@ -28,11 +28,11 @@ A primeira proposta de controlador tinha seis botões dedicados, três LEDs de r
 | Inversão de pinos | Inicialmente o botão verde estava em D4 e o vermelho em D2; LED verde em D10 e vermelho em D8. A troca física produziu verde D2/D8 e vermelho D4/D10 inicialmente. Após retirar o indicador amarelo, o LED vermelho terminou no D9, não D10. |
 | Posição do potenciômetro | Três grupos distintos de furos, perna central em A0 e externas em 5V/GND. Sem resistor extra de 10 kΩ. |
 
-![Primeira disposição de três botões](../images/arduino-03.jpeg)
+![Primeira disposição de três botões](../../images/arduino-03.jpeg)
 
-![Ligações em andamento](../images/arduino-04.jpeg)
+![Ligações em andamento](../../images/arduino-04.jpeg)
 
-![Componentes iniciais montados](../images/arduino-05.jpeg)
+![Componentes iniciais montados](../../images/arduino-05.jpeg)
 
 ## Diagnóstico do firmware e do Ubuntu
 
@@ -73,13 +73,13 @@ A saída original dos erros foi preservada para facilitar o diagnóstico. As men
 | `Arduino desconectado` / `Arduino conectado` | Arduino desconectado / conectado |
 | `READY` | Firmware pronto |
 
-Testes isolados úteis: encerre o Python primeiro, envie G/R/U pelo monitor serial em 9600 baud (timeout dos LEDs de 7 s); teste os botões e A0 com o [sketch de diagnóstico](../diagnostics/components/components.ino); grave novamente o firmware principal ao terminar. O diagnóstico incluído combina os testes anteriormente sugeridos para a pinagem final, não é um sketch validado separadamente.
+Testes isolados úteis: encerre o Python primeiro, envie G/R/U pelo monitor serial em 9600 baud (timeout dos LEDs de 7 s); teste os botões e A0 com o [sketch de diagnóstico](../../diagnostics/components/components.ino); grave novamente o firmware principal ao terminar. O diagnóstico incluído combina os testes anteriormente sugeridos para a pinagem final, não é um sketch validado separadamente.
 
 ## Aceitação final
 
 Após resolver pinagem e conflito serial, o responsável pela montagem confirmou todas as funções: reproduzir/pausar, anterior/próxima, mute, volume, bloqueio de tela e indicadores online/offline. A inicialização automática foi configurada e o processo foi observado rodando. Não houve validação independente de reinicializações repetidas, estabilidade elétrica de longo prazo, tempos exatos ou outras distribuições.
 
-![Protótipo final](../images/arduino-08.jpeg)
+![Protótipo final](../../images/arduino-08.jpeg)
 
 ## Notas técnicas e limitações
 

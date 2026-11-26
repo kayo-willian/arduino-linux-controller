@@ -1,6 +1,6 @@
 # Hardware e ligações
 
-[English](hardware.md) · [Início](../README.pt-BR.md)
+[English](../hardware.md) · [Início](README.md)
 
 ## Componentes
 
@@ -59,11 +59,11 @@ O resistor de 1 kΩ foi escolhido para brilho moderado dos indicadores. Também 
 
 ## Fotografias da montagem
 
-![Teste de espaço dos botões](../images/arduino-02.jpeg)
+![Teste de espaço dos botões](../../images/arduino-02.jpeg)
 
-![Disposição inicial com três LEDs](../images/arduino-03.jpeg)
+![Disposição inicial com três LEDs](../../images/arduino-03.jpeg)
 
-![Montagem final com dois LEDs](../images/arduino-08.jpeg)
+![Montagem final com dois LEDs](../../images/arduino-08.jpeg)
 
 Fotos anteriores podem mostrar ligações obsoletas, um terceiro LED ou posições físicas invertidas. A pinagem definitiva acima prevalece. Os furos exatos dependem do espaçamento das peças.
 

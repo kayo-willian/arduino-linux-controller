@@ -1,6 +1,6 @@
 # Hardware and wiring
 
-[Português (Brasil)](hardware.pt-BR.md) · [Home](../README.md)
+[Português (Brasil)](pt-BR/componentes-e-montagem.md) · [Home](../README.md)
 
 ## Parts
 
