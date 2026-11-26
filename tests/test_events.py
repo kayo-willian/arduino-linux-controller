@@ -51,3 +51,7 @@ class EventTests(unittest.TestCase):
     def test_volume_upper_bound(self):
         self.event("VOLUME:999")
         self.assertEqual(self.command.call_args.args[-1], "100%")
+
+    def test_volume_lower_bound(self):
+        self.event("VOLUME:-12")
+        self.assertEqual(self.command.call_args.args[-1], "0%")
