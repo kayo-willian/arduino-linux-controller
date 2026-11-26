@@ -44,3 +44,7 @@ class HostTests(unittest.TestCase):
     def test_command_missing_executable(self):
         with patch("subprocess.run", side_effect=FileNotFoundError("missing")), patch("builtins.print"):
             self.assertIsNone(self.host["command"]("missing"))
+
+    def test_command_timeout(self):
+        with patch("subprocess.run", side_effect=subprocess.TimeoutExpired("example", 8)), patch("builtins.print"):
+            self.assertIsNone(self.host["command"]("example"))
