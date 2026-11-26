@@ -24,3 +24,6 @@ class NetworkTests(unittest.TestCase):
 
     def test_full_connectivity(self):
         self.check_state(["connected","full"], "G")
+
+    def test_limited_connectivity(self):
+        self.check_state(["connected","limited"], "Y")
