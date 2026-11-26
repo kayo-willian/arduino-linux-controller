@@ -33,3 +33,6 @@ class NetworkTests(unittest.TestCase):
 
     def test_no_internet(self):
         self.check_state(["connected","none"], "Y")
+
+    def test_unknown_connectivity(self):
+        self.check_state(["connected","unknown"], "U")
