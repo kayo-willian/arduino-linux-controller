@@ -29,3 +29,11 @@ class EventTests(unittest.TestCase):
     def test_mute(self):
         self.event("MUTE")
         self.command.assert_called_once_with("wpctl", "set-mute", "@DEFAULT_AUDIO_SINK@", "toggle")
+
+    def test_lock(self):
+        self.event("LOCK")
+        self.command.assert_called_once_with(
+            "gdbus", "call", "--session", "--dest", "org.gnome.ScreenSaver",
+            "--object-path", "/org/gnome/ScreenSaver",
+            "--method", "org.gnome.ScreenSaver.Lock"
+        )
