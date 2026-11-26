@@ -31,3 +31,10 @@ class AutostartTests(unittest.TestCase):
         self.assertIn("[Desktop Entry]", entry)
         self.assertIn(f'Exec=/usr/bin/python3 "{self.target}"', entry)
         self.assertIn("X-GNOME-Autostart-enabled=true", entry)
+
+    def test_existing_different_script(self):
+        self.target.write_text("keep this")
+        result = self.run_helper()
+        self.assertNotEqual(result.returncode, 0)
+        self.assertEqual(self.target.read_text(), "keep this")
+        self.assertFalse(self.desktop.exists())
