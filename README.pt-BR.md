@@ -1,11 +1,11 @@
 # Arduino Linux Controller
 
-![Status](https://img.shields.io/badge/status-completed-238636?style=flat-square)
+![Status](https://img.shields.io/badge/status-conclu%C3%ADdo-238636?style=flat-square)
 ![Arduino](https://img.shields.io/badge/Arduino-Uno-00979D?style=flat-square&logo=arduino&logoColor=white)
 ![Linux](https://img.shields.io/badge/Linux-Ubuntu-E95420?style=flat-square&logo=ubuntu&logoColor=white)
 ![C++](https://img.shields.io/badge/C%2B%2B-firmware-00599C?style=flat-square&logo=cplusplus)
-![Python](https://img.shields.io/badge/Python-host-3776AB?style=flat-square&logo=python&logoColor=white)
-![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)
+![Python](https://img.shields.io/badge/Python-computador-3776AB?style=flat-square&logo=python&logoColor=white)
+![Licença](https://img.shields.io/badge/licen%C3%A7a-MIT-blue?style=flat-square)
 
 [English](README.md) | **Português (Brasil)**
 
@@ -127,7 +127,20 @@ arduino-linux-controller/
 
 ### Componentes
 
-Uma placa SMD compatível com Uno, uma protoboard de 400 furos (30 grupos numerados), três botões normalmente abertos com capas coloridas, um LED verde, um LED vermelho, dois resistores de 1 kΩ, um potenciômetro linear B10K (10 kΩ), jumpers macho-macho e cabo USB A–B. Um hub USB foi utilizado na montagem real, mas é opcional. Sem bateria, solda, módulo sem fio, sensores ou LED amarelo no circuito final.
+| Quantidade | Componente | Especificação |
+| --- | --- | --- |
+| 1 | Placa Arduino | Compatível com Uno SMD, 5 V |
+| 1 | Protoboard | 400 furos (30 grupos numerados) |
+| 3 | Botões de pressão momentâneos | Normalmente abertos, capas verde/amarela/vermelha |
+| 1 | LED verde | Indicador de conectividade de rede |
+| 1 | LED vermelho | Indicador de conectividade de rede |
+| 2 | Resistores | 1 kΩ cada, um por LED |
+| 1 | Potenciômetro giratório | B10K, 10 kΩ linear |
+| Conforme necessário | Jumpers | Macho-macho |
+| 1 | Cabo USB | USB A–B, dados e alimentação |
+| Opcional | Hub USB | Utilizado na montagem original |
+
+Não são necessários bateria, solda, módulo sem fio, sensores ou LED amarelo para o circuito final.
 
 ### Pinagem definitiva
 
@@ -147,7 +160,7 @@ D10 não é utilizado. O botão amarelo permanece; o LED amarelo foi removido. O
 
 1. Desconecte o USB. Apoie a placa sobre uma base rígida isolante, nunca diretamente em gabinete metálico. A placa original apresentou aquecimento intermitente sem diagnóstico conclusivo.
 2. Deixe a protoboard na horizontal. Cada grupo numerado de cinco furos está conectado internamente; a divisão central isola as duas metades. Conecte GND do Arduino ao trilho negativo e una ambos os trilhos negativos; confirme continuidade se possível. Não una positivo e negativo.
-3. Encaixe os três botões sobre a divisão central com espaço para as capas. Utilize dois contatos eletricamente distintos de cada botão (geralmente pernas diagonalmente opostas nos modelos de quatro pinos; confirme pelo pinout ou continuidade). Um contato vai ao pino digital e o outro ao GND comum. Não é necessário resistor externo.
+3. Encaixe os três botões sobre a divisão central com espaço para as capas. Utilize dois contatos eletricamente distintos de cada botão (geralmente pernas diagonalmente opostas nos modelos de quatro pinos; confirme pelo pinout ou continuidade). Um contato vai ao pino digital e o outro ao GND comum. undefined
 4. Encaixe cada LED com as pernas em grupos numerados diferentes, na mesma metade. A perna longa normalmente é o ânodo; a borda achatada identifica o cátodo. Ligue o ânodo ao D8 ou D9, o cátodo a um resistor individual de 1 kΩ e a outra ponta do resistor ao GND. O resistor em série pode ficar antes ou depois do LED.
 5. Encaixe as três pernas do potenciômetro em grupos eletricamente separados. Ligue a central ao A0 e as externas ao 5V e GND. Não force o espaçamento nem permita que as pernas encostem.
 6. Afaste os fios das capas e evite esmagar os jumpers roteados por baixo da protoboard. Confira curtos e metais expostos antes de energizar.
@@ -218,7 +231,24 @@ VOLUME:50
 LOCK
 ```
 
+A saída é reproduzida exatamente como emitida pelo programa fornecido. As mensagens de estado estão em português; os identificadores de eventos seriais são independentes do idioma e não devem ser traduzidos no código.
+
+| Mensagem/evento original | Significado |
+| --- | --- |
+| `Aguardando Arduino...` | Aguardando Arduino |
+| `Arduino conectado:` | Arduino conectado |
+| `Arduino desconectado:` | Arduino desconectado ou erro serial |
+| `READY` | Firmware pronto |
+| `PLAY_PAUSE` | Reproduzir/pausar |
+| `NEXT` | Próxima faixa |
+| `PREVIOUS` | Faixa anterior |
+| `MUTE` | Silenciar/restaurar áudio |
+| `VOLUME:50` | Ajustar o volume para 50% (exemplo) |
+| `LOCK` | Bloquear sessão |
+
 READY pode passar despercebido durante a conexão/reset; o programa não depende dessa mensagem. A porta é selecionada automaticamente apenas quando existe exatamente um dispositivo /dev/ttyUSB* ou /dev/ttyACM*. Desconecte outros dispositivos seriais ou adapte find_arduino. O programa tenta reconectar após falhas seriais.
+
+O firmware permanece gravado na memória flash quando a alimentação USB é removida. Com o programa do computador em execução, ele procura uma porta serial elegível a cada três segundos enquanto estiver desconectado e tenta reabri-la após um erro serial. Reconectar o cabo USB normalmente não exige nova gravação nem abertura do Arduino IDE. Isso pressupõe uma sessão gráfica ativa, o processo do computador em execução e exatamente um dispositivo serial elegível.
 
 ### 4. Testes funcionais
 
@@ -244,7 +274,7 @@ Depois dos testes manuais, encerre o processo com Ctrl+C. Execute [enable-autost
 bash installation/enable-autostart.sh
 ```
 
-O script copia o programa para ~/painel-ubuntu.py e cria uma entrada de inicialização automática para o usuário. O painel inicia no login gráfico, não antes da autenticação. Saia e entre na sessão para testar. Não abra outra instância se a automática já estiver em execução.
+O script copia o programa para ~/painel-ubuntu.py e cria uma entrada de inicialização automática para o usuário. O painel inicia no login gráfico, não antes da autenticação. Saia e entre na sessão para testar. Não abra outra instância se a automática já estiver em execução. Se já existir um arquivo ~/painel-ubuntu.py com conteúdo diferente, o instalador interrompe a operação para evitar sobrescrevê-lo.
 
 ### 6. Comandos de diagnóstico
 
@@ -307,6 +337,7 @@ Consulte o [diário de desenvolvimento](#debug) para conhecer os problemas reais
 | Indicador offline não acendia | Enviar R pelo monitor serial não acendia o LED. O código ainda usava D10, mas o indicador estava fisicamente em D9. Corrigiu-se o pino e trocou-se o LED amarelo temporário por um vermelho. |
 | Device or resource busy | O Python falhou repetidamente com Errno 16 em /dev/ttyUSB0 e depois exibiu READY; naquele momento nenhum botão respondia. Perda do GND comum foi considerada, mas posteriormente observou-se disputa entre Arduino IDE e Python. Fechar a IDE e evitar processos Python duplicados resolveu o conflito relatado. |
 | Inicialização automática removida por engano | O comando opcional de remoção foi executado junto dos demais. A entrada desktop foi recriada e o processo conferido. |
+| Processos duplicados após reinicialização manual | Foram observados dois processos Python (PIDs 25218 e 25280). Ambos indicavam 0,3% de CPU e aproximadamente 13,4–13,5 MiB de memória residente. Os dois foram encerrados e um processo foi iniciado; pgrep mostrou então somente o PID 31492. São medições históricas, não PIDs atuais nem garantia de consumo de recursos. |
 
 Trechos dos erros:
 
@@ -320,6 +351,18 @@ Arduino desconectado: [Errno 16] could not open port /dev/ttyUSB0:
 Arduino conectado: /dev/ttyUSB0
 READY
 ```
+
+A saída original dos erros foi preservada para facilitar o diagnóstico. As mensagens abaixo explicam seu significado.
+
+| Mensagem original | Significado |
+| --- | --- |
+| `protocol expects sync byte 0x14 but got 0x00` | Byte de sincronização esperado difere do recebido |
+| `programmer is out of sync` | A comunicação com o gravador não está sincronizada |
+| `unable to write flash (rc = -1)` | Falha na gravação da memória flash |
+| `Failed uploading: uploading error: exit status 1` | Falha no envio do firmware |
+| `Device or resource busy` | Dispositivo ou recurso ocupado |
+| `Arduino desconectado` / `Arduino conectado` | Arduino desconectado / conectado |
+| `READY` | Firmware pronto |
 
 Testes isolados úteis: encerre o Python primeiro, envie G/R/U pelo monitor serial em 9600 baud (timeout dos LEDs de 7 s); teste os botões e A0 com o [sketch de diagnóstico](diagnostics/components/components.ino); grave novamente o firmware principal ao terminar. O diagnóstico incluído combina os testes anteriormente sugeridos para a pinagem final, não é um sketch validado separadamente.
 
@@ -355,7 +398,7 @@ As 16 fotografias reais foram preservadas na pasta [images/](images/). As primei
 
 | Vista frontal | Outra vista do dispositivo |
 | --- | --- |
-| ![Painel concluído](images/arduino-08.jpeg) | ![Painel em uso](images/arduino-10.jpeg) |
+| ![Painel concluído](images/arduino-08.jpeg) | ![Outra vista do painel](images/arduino-10.jpeg) |
 
 Consulte também o [índice de fotos](images/README.pt-BR.md).
 
@@ -365,7 +408,7 @@ Consulte também o [índice de fotos](images/README.pt-BR.md).
 
 ### Autoria
 
-Eu realizei a montagem, alterei as ligações, gravei o firmware e testei o dispositivo físico. O código publicado reconstrói a versão funcional a partir da conversa de desenvolvimento; não é uma exportação byte a byte dos arquivos locais.
+Eu realizei a montagem, alterei as ligações, gravei o firmware e testei o dispositivo físico. O código publicado reconstrói a versão funcional com base nos registros de desenvolvimento; não é uma cópia byte a byte dos arquivos locais.
 
 As versões separadas da documentação continuam disponíveis para consulta: [hardware](docs/hardware.pt-BR.md), [instalação](docs/installation.pt-BR.md) e [diário de desenvolvimento](docs/development.pt-BR.md). Todo o conteúdo necessário para reproduzir o projeto está neste README.
 

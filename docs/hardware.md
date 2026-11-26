@@ -4,7 +4,20 @@
 
 ## Parts
 
-One Uno SMD-compatible board, one 400-hole breadboard (30 numbered groups), three normally open push buttons with colored caps, one green LED, one red LED, two 1 kΩ resistors, one B10K (10 kΩ linear) potentiometer, male-to-male jumpers, USB A–B cable. A USB hub was used in the actual setup; it is optional. No battery, soldering, wireless module, sensors or yellow LED in the final circuit.
+| Quantity | Component | Specification |
+| --- | --- | --- |
+| 1 | Arduino board | Uno-compatible SMD board, 5 V |
+| 1 | Breadboard | 400 holes (30 numbered groups) |
+| 3 | Momentary push buttons | Normally open, green/yellow/red caps |
+| 1 | Green LED | Network connectivity indicator |
+| 1 | Red LED | Network connectivity indicator |
+| 2 | Resistors | 1 kΩ each, one per LED |
+| 1 | Rotary potentiometer | B10K, 10 kΩ linear |
+| As needed | Jumper wires | Male-to-male |
+| 1 | USB cable | USB A–B, data and power |
+| Optional | USB hub | Used in the original setup |
+
+No battery, soldering, wireless module, sensors or yellow LED are required for the final circuit.
 
 ## Final pinout
 
@@ -24,7 +37,7 @@ D10 is unused. The yellow button is still present; the yellow LED was removed. T
 
 1. Disconnect USB. Place the board on a rigid insulating surface; never directly on a metal case. The original board had an unresolved intermittent heating problem.
 2. Turn the breadboard horizontally. Each numbered group of five holes is connected internally; the central gap isolates its two halves. Connect Arduino GND to a negative rail and bridge the two negative rails; confirm continuity if available. Do not connect the positive and negative rails.
-3. Place the three buttons across the central gap, with enough space for their caps. Use two electrically distinct contacts per button (often opposite diagonal pins on a four-pin switch; verify with continuity or the switch pinout). One goes to its digital pin, the other to the common ground. No external pull-up is needed.
+3. Place the three buttons across the central gap, with enough space for their caps. Use two electrically distinct contacts per button (often opposite diagonal pins on a four-pin switch; verify with continuity or the switch pinout). One goes to its digital pin, the other to the common ground. No external pull-up resistor is needed.
 4. Insert each LED with its legs in different numbered groups, on the same breadboard half. The longer leg is normally the anode; the flat edge identifies the cathode. Connect the anode to D8 or D9, the cathode to one end of its own 1 kΩ resistor, and the resistor's other end to GND. A resistor may be on either side of a series LED circuit.
 5. Insert all three potentiometer legs into electrically separate groups. Connect the middle leg to A0 and the outer legs to 5V and GND. Do not force the spacing or allow the legs to touch.
 6. Keep wires away from button caps and avoid crushing the wires routed under the breadboard. Check for shorts and exposed metal before connecting power.

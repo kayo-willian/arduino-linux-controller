@@ -24,4 +24,4 @@ O conjunto final também contém uma foto apenas da placa e ângulos repetidos; 
 
 ![Controlador final](arduino-08.jpeg)
 
-As fotografias foram preparadas localmente com ExifTool para remover metadados incorporados antes da renomeação. Preserve o conteúdo visual original e revise o fundo quanto a informações privadas antes de publicar.
+As fotografias foram preparadas localmente com ExifTool para remover metadados incorporados antes da renomeação. O conteúdo visual original foi mantido.

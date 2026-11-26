@@ -127,7 +127,20 @@ arduino-linux-controller/
 
 ### Parts
 
-One Uno SMD-compatible board, one 400-hole breadboard (30 numbered groups), three normally open push buttons with colored caps, one green LED, one red LED, two 1 kΩ resistors, one B10K (10 kΩ linear) potentiometer, male-to-male jumpers, USB A–B cable. A USB hub was used in the actual setup; it is optional. No battery, soldering, wireless module, sensors or yellow LED in the final circuit.
+| Quantity | Component | Specification |
+| --- | --- | --- |
+| 1 | Arduino board | Uno-compatible SMD board, 5 V |
+| 1 | Breadboard | 400 holes (30 numbered groups) |
+| 3 | Momentary push buttons | Normally open, green/yellow/red caps |
+| 1 | Green LED | Network connectivity indicator |
+| 1 | Red LED | Network connectivity indicator |
+| 2 | Resistors | 1 kΩ each, one per LED |
+| 1 | Rotary potentiometer | B10K, 10 kΩ linear |
+| As needed | Jumper wires | Male-to-male |
+| 1 | USB cable | USB A–B, data and power |
+| Optional | USB hub | Used in the original setup |
+
+No battery, soldering, wireless module, sensors or yellow LED are required for the final circuit.
 
 ### Final pinout
 
@@ -147,7 +160,7 @@ D10 is unused. The yellow button is still present; the yellow LED was removed. T
 
 1. Disconnect USB. Place the board on a rigid insulating surface; never directly on a metal case. The original board had an unresolved intermittent heating problem.
 2. Turn the breadboard horizontally. Each numbered group of five holes is connected internally; the central gap isolates its two halves. Connect Arduino GND to a negative rail and bridge the two negative rails; confirm continuity if available. Do not connect the positive and negative rails.
-3. Place the three buttons across the central gap, with enough space for their caps. Use two electrically distinct contacts per button (often opposite diagonal pins on a four-pin switch; verify with continuity or the switch pinout). One goes to its digital pin, the other to the common ground. No external pull-up is needed.
+3. Place the three buttons across the central gap, with enough space for their caps. Use two electrically distinct contacts per button (often opposite diagonal pins on a four-pin switch; verify with continuity or the switch pinout). One goes to its digital pin, the other to the common ground. No external pull-up resistor is needed.
 4. Insert each LED with its legs in different numbered groups, on the same breadboard half. The longer leg is normally the anode; the flat edge identifies the cathode. Connect the anode to D8 or D9, the cathode to one end of its own 1 kΩ resistor, and the resistor's other end to GND. A resistor may be on either side of a series LED circuit.
 5. Insert all three potentiometer legs into electrically separate groups. Connect the middle leg to A0 and the outer legs to 5V and GND. Do not force the spacing or allow the legs to touch.
 6. Keep wires away from button caps and avoid crushing the wires routed under the breadboard. Check for shorts and exposed metal before connecting power.
@@ -218,7 +231,24 @@ VOLUME:50
 LOCK
 ```
 
+The output is reproduced exactly as emitted by the supplied program. Its status messages are in Portuguese; the serial event identifiers are language-independent and must not be translated in the code.
+
+| Original message/event | Meaning |
+| --- | --- |
+| `Aguardando Arduino...` | Waiting for Arduino |
+| `Arduino conectado:` | Arduino connected |
+| `Arduino desconectado:` | Arduino disconnected or serial error |
+| `READY` | Firmware ready |
+| `PLAY_PAUSE` | Play/pause |
+| `NEXT` | Next track |
+| `PREVIOUS` | Previous track |
+| `MUTE` | Toggle mute |
+| `VOLUME:50` | Set volume to 50% (example) |
+| `LOCK` | Lock session |
+
 READY may be missed during connection/reset; the host does not require it. The script automatically selects a port only if exactly one /dev/ttyUSB* or /dev/ttyACM* device is present. Disconnect unrelated serial devices or edit find_arduino for your setup. It retries connection after serial errors.
+
+The firmware remains stored in flash when USB power is removed. With the host program running, it searches for an eligible serial port every three seconds while disconnected and attempts to reopen it after a serial error. Reconnecting the USB cable normally requires neither a new upload nor opening Arduino IDE. This assumes the desktop session is active, the host process is running, and exactly one eligible serial device is present.
 
 ### 4. Functional checks
 
@@ -244,7 +274,7 @@ Once manual tests pass, stop the foreground process with Ctrl+C. Run [enable-aut
 bash installation/enable-autostart.sh
 ```
 
-This copies the supplied Python script to ~/painel-ubuntu.py and creates a per-user desktop autostart entry. It will launch at graphical login, not at system boot before login. Log out and in to test. Do not start another copy while the autostart instance is running.
+This copies the supplied Python script to ~/painel-ubuntu.py and creates a per-user desktop autostart entry. It will launch at graphical login, not at system boot before login. Log out and in to test. Do not start another copy while the autostart instance is running. If ~/painel-ubuntu.py already exists with different content, the installer stops to avoid overwriting it.
 
 ### 6. Troubleshooting commands
 
@@ -307,6 +337,7 @@ See the [development log](#debug) for the actual troubleshooting history.
 | Offline LED would not light | Sending R through the serial monitor did not light it. The code still targeted D10, but the indicator was physically connected to D9. Correcting the pin and replacing the temporary yellow LED with red resolved the mismatch. |
 | Device or resource busy | Python repeatedly failed with Errno 16 on /dev/ttyUSB0 and later printed READY; no buttons responded at that point. A common-ground issue was considered, but contention between Arduino IDE and the host was subsequently observed. Closing the IDE and avoiding duplicate Python processes resolved the reported conflict. |
 | Autostart removed accidentally | The optional removal command was executed along with the others. The desktop entry was recreated and the process checked. |
+| Duplicate host processes after manual restart | Two Python processes (PIDs 25218 and 25280) were observed. Both reported 0.3% CPU and approximately 13.4–13.5 MiB resident memory. Both were stopped and one process was started; pgrep then showed only PID 31492. These are historical measurements, not current process IDs or a guaranteed resource budget. |
 
 Relevant error excerpts:
 
@@ -320,6 +351,18 @@ Arduino desconectado: [Errno 16] could not open port /dev/ttyUSB0:
 Arduino conectado: /dev/ttyUSB0
 READY
 ```
+
+The original error output is kept unchanged for troubleshooting. The messages below explain its meaning.
+
+| Original message | Meaning |
+| --- | --- |
+| `protocol expects sync byte 0x14 but got 0x00` | Expected synchronization byte differs from the received byte |
+| `programmer is out of sync` | Communication with the programmer is not synchronized |
+| `unable to write flash (rc = -1)` | Writing to flash failed |
+| `Failed uploading: uploading error: exit status 1` | Firmware upload failed |
+| `Device or resource busy` | Device or resource is occupied |
+| `Arduino desconectado` / `Arduino conectado` | Arduino disconnected / connected |
+| `READY` | Firmware ready |
 
 Useful isolated tests: stop Python first, send G/R/U using the serial monitor at 9600 baud (LED timeout 7 s); test the switch readings and A0 with the [component diagnostic sketch](diagnostics/components/components.ino); re-upload the main firmware afterwards. The included diagnostic combines earlier suggested tests for the final pinout, rather than reproducing a separately validated sketch.
 
@@ -355,7 +398,7 @@ All 16 actual photographs are preserved in [images/](images/). The early photos 
 
 | Front view | Another view of the device |
 | --- | --- |
-| ![Finished panel](images/arduino-08.jpeg) | ![Panel in use](images/arduino-10.jpeg) |
+| ![Finished panel](images/arduino-08.jpeg) | ![Another view of the panel](images/arduino-10.jpeg) |
 
 See the [photo index](images/README.md) as well.
 
@@ -365,7 +408,7 @@ See the [photo index](images/README.md) as well.
 
 ### Authorship
 
-I assembled the circuit, changed the wiring, uploaded the firmware and tested the physical device. The published source reconstructs the working version from the development conversation; it is not a byte-for-byte export of my local files.
+I assembled the circuit, changed the wiring, uploaded the firmware and tested the physical device. The published source reconstructs the working version from the development records; it is not a byte-for-byte copy of the local files.
 
 Separate reference pages remain available: [hardware](docs/hardware.md), [installation](docs/installation.md) and [development log](docs/development.md). All information needed to reproduce the project is included in this README.
 

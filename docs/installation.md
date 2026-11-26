@@ -42,7 +42,24 @@ VOLUME:50
 LOCK
 ```
 
+The output is reproduced exactly as emitted by the supplied program. Its status messages are in Portuguese; the serial event identifiers are language-independent and must not be translated in the code.
+
+| Original message/event | Meaning |
+| --- | --- |
+| `Aguardando Arduino...` | Waiting for Arduino |
+| `Arduino conectado:` | Arduino connected |
+| `Arduino desconectado:` | Arduino disconnected or serial error |
+| `READY` | Firmware ready |
+| `PLAY_PAUSE` | Play/pause |
+| `NEXT` | Next track |
+| `PREVIOUS` | Previous track |
+| `MUTE` | Toggle mute |
+| `VOLUME:50` | Set volume to 50% (example) |
+| `LOCK` | Lock session |
+
 READY may be missed during connection/reset; the host does not require it. The script automatically selects a port only if exactly one /dev/ttyUSB* or /dev/ttyACM* device is present. Disconnect unrelated serial devices or edit find_arduino for your setup. It retries connection after serial errors.
+
+The firmware remains stored in flash when USB power is removed. With the host program running, it searches for an eligible serial port every three seconds while disconnected and attempts to reopen it after a serial error. Reconnecting the USB cable normally requires neither a new upload nor opening Arduino IDE. This assumes the desktop session is active, the host process is running, and exactly one eligible serial device is present.
 
 ## 4. Functional checks
 
@@ -68,7 +85,7 @@ Once manual tests pass, stop the foreground process with Ctrl+C. Run [enable-aut
 bash installation/enable-autostart.sh
 ```
 
-This copies the supplied Python script to ~/painel-ubuntu.py and creates a per-user desktop autostart entry. It will launch at graphical login, not at system boot before login. Log out and in to test. Do not start another copy while the autostart instance is running.
+This copies the supplied Python script to ~/painel-ubuntu.py and creates a per-user desktop autostart entry. It will launch at graphical login, not at system boot before login. Log out and in to test. Do not start another copy while the autostart instance is running. If ~/painel-ubuntu.py already exists with different content, the installer stops to avoid overwriting it.
 
 ## 6. Troubleshooting commands
 

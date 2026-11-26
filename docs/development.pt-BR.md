@@ -46,6 +46,7 @@ A primeira proposta de controlador tinha seis botões dedicados, três LEDs de r
 | Indicador offline não acendia | Enviar R pelo monitor serial não acendia o LED. O código ainda usava D10, mas o indicador estava fisicamente em D9. Corrigiu-se o pino e trocou-se o LED amarelo temporário por um vermelho. |
 | Device or resource busy | O Python falhou repetidamente com Errno 16 em /dev/ttyUSB0 e depois exibiu READY; naquele momento nenhum botão respondia. Perda do GND comum foi considerada, mas posteriormente observou-se disputa entre Arduino IDE e Python. Fechar a IDE e evitar processos Python duplicados resolveu o conflito relatado. |
 | Inicialização automática removida por engano | O comando opcional de remoção foi executado junto dos demais. A entrada desktop foi recriada e o processo conferido. |
+| Processos duplicados após reinicialização manual | Foram observados dois processos Python (PIDs 25218 e 25280). Ambos indicavam 0,3% de CPU e aproximadamente 13,4–13,5 MiB de memória residente. Os dois foram encerrados e um processo foi iniciado; pgrep mostrou então somente o PID 31492. São medições históricas, não PIDs atuais nem garantia de consumo de recursos. |
 
 Trechos dos erros:
 
@@ -59,6 +60,18 @@ Arduino desconectado: [Errno 16] could not open port /dev/ttyUSB0:
 Arduino conectado: /dev/ttyUSB0
 READY
 ```
+
+A saída original dos erros foi preservada para facilitar o diagnóstico. As mensagens abaixo explicam seu significado.
+
+| Mensagem original | Significado |
+| --- | --- |
+| `protocol expects sync byte 0x14 but got 0x00` | Byte de sincronização esperado difere do recebido |
+| `programmer is out of sync` | A comunicação com o gravador não está sincronizada |
+| `unable to write flash (rc = -1)` | Falha na gravação da memória flash |
+| `Failed uploading: uploading error: exit status 1` | Falha no envio do firmware |
+| `Device or resource busy` | Dispositivo ou recurso ocupado |
+| `Arduino desconectado` / `Arduino conectado` | Arduino desconectado / conectado |
+| `READY` | Firmware pronto |
 
 Testes isolados úteis: encerre o Python primeiro, envie G/R/U pelo monitor serial em 9600 baud (timeout dos LEDs de 7 s); teste os botões e A0 com o [sketch de diagnóstico](../diagnostics/components/components.ino); grave novamente o firmware principal ao terminar. O diagnóstico incluído combina os testes anteriormente sugeridos para a pinagem final, não é um sketch validado separadamente.
 

@@ -4,7 +4,20 @@
 
 ## Componentes
 
-Uma placa SMD compatível com Uno, uma protoboard de 400 furos (30 grupos numerados), três botões normalmente abertos com capas coloridas, um LED verde, um LED vermelho, dois resistores de 1 kΩ, um potenciômetro linear B10K (10 kΩ), jumpers macho-macho e cabo USB A–B. Um hub USB foi utilizado na montagem real, mas é opcional. Sem bateria, solda, módulo sem fio, sensores ou LED amarelo no circuito final.
+| Quantidade | Componente | Especificação |
+| --- | --- | --- |
+| 1 | Placa Arduino | Compatível com Uno SMD, 5 V |
+| 1 | Protoboard | 400 furos (30 grupos numerados) |
+| 3 | Botões de pressão momentâneos | Normalmente abertos, capas verde/amarela/vermelha |
+| 1 | LED verde | Indicador de conectividade de rede |
+| 1 | LED vermelho | Indicador de conectividade de rede |
+| 2 | Resistores | 1 kΩ cada, um por LED |
+| 1 | Potenciômetro giratório | B10K, 10 kΩ linear |
+| Conforme necessário | Jumpers | Macho-macho |
+| 1 | Cabo USB | USB A–B, dados e alimentação |
+| Opcional | Hub USB | Utilizado na montagem original |
+
+Não são necessários bateria, solda, módulo sem fio, sensores ou LED amarelo para o circuito final.
 
 ## Pinagem definitiva
 
@@ -24,7 +37,7 @@ D10 não é utilizado. O botão amarelo permanece; o LED amarelo foi removido. O
 
 1. Desconecte o USB. Apoie a placa sobre uma base rígida isolante, nunca diretamente em gabinete metálico. A placa original apresentou aquecimento intermitente sem diagnóstico conclusivo.
 2. Deixe a protoboard na horizontal. Cada grupo numerado de cinco furos está conectado internamente; a divisão central isola as duas metades. Conecte GND do Arduino ao trilho negativo e una ambos os trilhos negativos; confirme continuidade se possível. Não una positivo e negativo.
-3. Encaixe os três botões sobre a divisão central com espaço para as capas. Utilize dois contatos eletricamente distintos de cada botão (geralmente pernas diagonalmente opostas nos modelos de quatro pinos; confirme pelo pinout ou continuidade). Um contato vai ao pino digital e o outro ao GND comum. Não é necessário resistor externo.
+3. Encaixe os três botões sobre a divisão central com espaço para as capas. Utilize dois contatos eletricamente distintos de cada botão (geralmente pernas diagonalmente opostas nos modelos de quatro pinos; confirme pelo pinout ou continuidade). Um contato vai ao pino digital e o outro ao GND comum. undefined
 4. Encaixe cada LED com as pernas em grupos numerados diferentes, na mesma metade. A perna longa normalmente é o ânodo; a borda achatada identifica o cátodo. Ligue o ânodo ao D8 ou D9, o cátodo a um resistor individual de 1 kΩ e a outra ponta do resistor ao GND. O resistor em série pode ficar antes ou depois do LED.
 5. Encaixe as três pernas do potenciômetro em grupos eletricamente separados. Ligue a central ao A0 e as externas ao 5V e GND. Não force o espaçamento nem permita que as pernas encostem.
 6. Afaste os fios das capas e evite esmagar os jumpers roteados por baixo da protoboard. Confira curtos e metais expostos antes de energizar.

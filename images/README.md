@@ -24,4 +24,4 @@ The final-session set also includes a board-only photograph and repeated angles;
 
 ![Final controller](arduino-08.jpeg)
 
-Photographs were prepared locally with ExifTool to remove embedded metadata before renaming. Keep the original visual content; review backgrounds for private information before publishing.
+Photographs were prepared locally with ExifTool to remove embedded metadata before renaming. The original visual content was retained.

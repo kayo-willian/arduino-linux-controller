@@ -42,7 +42,24 @@ VOLUME:50
 LOCK
 ```
 
+A saída é reproduzida exatamente como emitida pelo programa fornecido. As mensagens de estado estão em português; os identificadores de eventos seriais são independentes do idioma e não devem ser traduzidos no código.
+
+| Mensagem/evento original | Significado |
+| --- | --- |
+| `Aguardando Arduino...` | Aguardando Arduino |
+| `Arduino conectado:` | Arduino conectado |
+| `Arduino desconectado:` | Arduino desconectado ou erro serial |
+| `READY` | Firmware pronto |
+| `PLAY_PAUSE` | Reproduzir/pausar |
+| `NEXT` | Próxima faixa |
+| `PREVIOUS` | Faixa anterior |
+| `MUTE` | Silenciar/restaurar áudio |
+| `VOLUME:50` | Ajustar o volume para 50% (exemplo) |
+| `LOCK` | Bloquear sessão |
+
 READY pode passar despercebido durante a conexão/reset; o programa não depende dessa mensagem. A porta é selecionada automaticamente apenas quando existe exatamente um dispositivo /dev/ttyUSB* ou /dev/ttyACM*. Desconecte outros dispositivos seriais ou adapte find_arduino. O programa tenta reconectar após falhas seriais.
+
+O firmware permanece gravado na memória flash quando a alimentação USB é removida. Com o programa do computador em execução, ele procura uma porta serial elegível a cada três segundos enquanto estiver desconectado e tenta reabri-la após um erro serial. Reconectar o cabo USB normalmente não exige nova gravação nem abertura do Arduino IDE. Isso pressupõe uma sessão gráfica ativa, o processo do computador em execução e exatamente um dispositivo serial elegível.
 
 ## 4. Testes funcionais
 
@@ -68,7 +85,7 @@ Depois dos testes manuais, encerre o processo com Ctrl+C. Execute [enable-autost
 bash installation/enable-autostart.sh
 ```
 
-O script copia o programa para ~/painel-ubuntu.py e cria uma entrada de inicialização automática para o usuário. O painel inicia no login gráfico, não antes da autenticação. Saia e entre na sessão para testar. Não abra outra instância se a automática já estiver em execução.
+O script copia o programa para ~/painel-ubuntu.py e cria uma entrada de inicialização automática para o usuário. O painel inicia no login gráfico, não antes da autenticação. Saia e entre na sessão para testar. Não abra outra instância se a automática já estiver em execução. Se já existir um arquivo ~/painel-ubuntu.py com conteúdo diferente, o instalador interrompe a operação para evitar sobrescrevê-lo.
 
 ## 6. Comandos de diagnóstico
 

@@ -46,6 +46,7 @@ The first desktop-controller proposal had six dedicated buttons, three network L
 | Offline LED would not light | Sending R through the serial monitor did not light it. The code still targeted D10, but the indicator was physically connected to D9. Correcting the pin and replacing the temporary yellow LED with red resolved the mismatch. |
 | Device or resource busy | Python repeatedly failed with Errno 16 on /dev/ttyUSB0 and later printed READY; no buttons responded at that point. A common-ground issue was considered, but contention between Arduino IDE and the host was subsequently observed. Closing the IDE and avoiding duplicate Python processes resolved the reported conflict. |
 | Autostart removed accidentally | The optional removal command was executed along with the others. The desktop entry was recreated and the process checked. |
+| Duplicate host processes after manual restart | Two Python processes (PIDs 25218 and 25280) were observed. Both reported 0.3% CPU and approximately 13.4–13.5 MiB resident memory. Both were stopped and one process was started; pgrep then showed only PID 31492. These are historical measurements, not current process IDs or a guaranteed resource budget. |
 
 Relevant error excerpts:
 
@@ -59,6 +60,18 @@ Arduino desconectado: [Errno 16] could not open port /dev/ttyUSB0:
 Arduino conectado: /dev/ttyUSB0
 READY
 ```
+
+The original error output is kept unchanged for troubleshooting. The messages below explain its meaning.
+
+| Original message | Meaning |
+| --- | --- |
+| `protocol expects sync byte 0x14 but got 0x00` | Expected synchronization byte differs from the received byte |
+| `programmer is out of sync` | Communication with the programmer is not synchronized |
+| `unable to write flash (rc = -1)` | Writing to flash failed |
+| `Failed uploading: uploading error: exit status 1` | Firmware upload failed |
+| `Device or resource busy` | Device or resource is occupied |
+| `Arduino desconectado` / `Arduino conectado` | Arduino disconnected / connected |
+| `READY` | Firmware ready |
 
 Useful isolated tests: stop Python first, send G/R/U using the serial monitor at 9600 baud (LED timeout 7 s); test the switch readings and A0 with the [component diagnostic sketch](../diagnostics/components/components.ino); re-upload the main firmware afterwards. The included diagnostic combines earlier suggested tests for the final pinout, rather than reproducing a separately validated sketch.
 
