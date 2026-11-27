@@ -115,7 +115,7 @@ arduino-linux-controller/
 │       ├── desenvolvimento.md
 │       └── registro-fotografico.md
 ├── images/
-│   ├── arduino-01.jpeg ... arduino-16.jpeg
+│   ├── arduino-01.jpeg ... arduino-14.jpeg
 │   └── README.md
 ├── tests/
 ├── README.md
@@ -407,12 +407,12 @@ Essas verificações não precisam de Arduino, PySerial, acesso à internet ou c
 
 ## Registro fotográfico
 
-As 16 fotografias reais foram preservadas na pasta [images/](../../images/). As primeiras imagens registram a montagem em andamento; o conjunto final contém diferentes ângulos e uma foto da placa isolada. Imagens antigas não representam a pinagem definitiva.
+As 14 fotografias distintas foram preservadas na pasta [images/](../../images/). As primeiras imagens registram a montagem em andamento; o conjunto final contém diferentes ângulos e uma foto da placa isolada. Imagens antigas não representam a pinagem definitiva.
 
 | Conjunto | Fotografias |
 | --- | --- |
 | Primeiros testes e montagem | [01](../../images/arduino-01.jpeg) · [02](../../images/arduino-02.jpeg) · [03](../../images/arduino-03.jpeg) · [04](../../images/arduino-04.jpeg) · [05](../../images/arduino-05.jpeg) · [06](../../images/arduino-06.jpeg) |
-| Sessão final | [07](../../images/arduino-07.jpeg) · [08](../../images/arduino-08.jpeg) · [09](../../images/arduino-09.jpeg) · [10](../../images/arduino-10.jpeg) · [11](../../images/arduino-11.jpeg) · [12](../../images/arduino-12.jpeg) · [13](../../images/arduino-13.jpeg) · [14](../../images/arduino-14.jpeg) · [15](../../images/arduino-15.jpeg) · [16](../../images/arduino-16.jpeg) |
+| Sessão final | [07](../../images/arduino-07.jpeg) · [08](../../images/arduino-08.jpeg) · [09](../../images/arduino-09.jpeg) · [10](../../images/arduino-10.jpeg) · [11](../../images/arduino-11.jpeg) · [12](../../images/arduino-12.jpeg) · [13](../../images/arduino-13.jpeg) · [14](../../images/arduino-14.jpeg) |
 
 | Vista frontal | Outra vista do dispositivo |
 | --- | --- |

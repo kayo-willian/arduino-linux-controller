@@ -115,7 +115,7 @@ arduino-linux-controller/
 │       ├── desenvolvimento.md
 │       └── registro-fotografico.md
 ├── images/
-│   ├── arduino-01.jpeg ... arduino-16.jpeg
+│   ├── arduino-01.jpeg ... arduino-14.jpeg
 │   └── README.md
 ├── tests/
 ├── README.md
@@ -407,12 +407,12 @@ These checks do not need an Arduino, PySerial, internet access or desktop comman
 
 ## Photo record
 
-All 16 actual photographs are preserved in [images/](images/). The early photos show assembly in progress; the final-session set contains several angles and a board-only photograph. Earlier images are not final wiring instructions.
+All 14 distinct photographs are preserved in [images/](images/). The early photos show assembly in progress; the final-session set contains several angles and a board-only photograph. Earlier images are not final wiring instructions.
 
 | Set | Photographs |
 | --- | --- |
 | First tests and assembly | [01](images/arduino-01.jpeg) · [02](images/arduino-02.jpeg) · [03](images/arduino-03.jpeg) · [04](images/arduino-04.jpeg) · [05](images/arduino-05.jpeg) · [06](images/arduino-06.jpeg) |
-| Final session | [07](images/arduino-07.jpeg) · [08](images/arduino-08.jpeg) · [09](images/arduino-09.jpeg) · [10](images/arduino-10.jpeg) · [11](images/arduino-11.jpeg) · [12](images/arduino-12.jpeg) · [13](images/arduino-13.jpeg) · [14](images/arduino-14.jpeg) · [15](images/arduino-15.jpeg) · [16](images/arduino-16.jpeg) |
+| Final session | [07](images/arduino-07.jpeg) · [08](images/arduino-08.jpeg) · [09](images/arduino-09.jpeg) · [10](images/arduino-10.jpeg) · [11](images/arduino-11.jpeg) · [12](images/arduino-12.jpeg) · [13](images/arduino-13.jpeg) · [14](images/arduino-14.jpeg) |
 
 | Front view | Another view of the device |
 | --- | --- |

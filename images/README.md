@@ -2,7 +2,7 @@
 
 [Português (Brasil)](../docs/pt-BR/registro-fotografico.md) · [Home](../README.md)
 
-The original photographs document the assembly process and completed device. All 16 locally renamed JPEG files are present in the [images/](./) folder. The READMEs and hardware/development guides refer to these paths.
+The original photographs document the assembly process and completed device. All 14 distinct locally renamed JPEG files are present in the [images/](./) folder. The READMEs and hardware/development guides refer to these paths.
 
 | Files | Stage |
 | --- | --- |
@@ -11,7 +11,7 @@ The original photographs document the assembly process and completed device. All
 | arduino-03.jpeg | Three buttons and three LEDs |
 | arduino-04.jpeg | Initial LED wiring |
 | arduino-05.jpeg, arduino-06.jpeg | First assembled prototype, multiple angles |
-| arduino-07.jpeg through arduino-16.jpeg | Final-session photographs |
+| arduino-07.jpeg through arduino-14.jpeg | Final-session photographs |
 | arduino-08.jpeg | Selected README cover: finished two-LED controller |
 
 The final-session set also includes a board-only photograph and repeated angles; not every image depicts the finished circuit. The earlier three-LED images are historical, not final wiring instructions.
