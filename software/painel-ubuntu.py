@@ -81,31 +81,36 @@ def find_arduino():
     return None
 
 
-threading.Thread(target=monitor_network, daemon=True).start()
+def main():
+    threading.Thread(target=monitor_network, daemon=True).start()
 
-while True:
-    port = find_arduino()
-    if not port:
-        print("Aguardando Arduino...")
-        time.sleep(3)
-        continue
+    while True:
+        port = find_arduino()
+        if not port:
+            print("Aguardando Arduino...")
+            time.sleep(3)
+            continue
 
-    try:
-        with serial.Serial(port, 9600, timeout=0.2, write_timeout=1) as arduino:
-            print(f"Arduino conectado: {port}")
-            time.sleep(2)
-            last_update = 0
+        try:
+            with serial.Serial(port, 9600, timeout=0.2, write_timeout=1) as arduino:
+                print(f"Arduino conectado: {port}")
+                time.sleep(2)
+                last_update = 0
 
-            while True:
-                now = time.monotonic()
-                if now - last_update >= 2:
-                    arduino.write(network_status.encode("ascii"))
-                    last_update = now
-                if arduino.in_waiting:
-                    event = arduino.readline().decode("utf-8", errors="ignore").strip()
-                    if event:
-                        execute_event(event)
-                time.sleep(0.02)
-    except (serial.SerialException, OSError) as error:
-        print(f"Arduino desconectado: {error}")
-        time.sleep(3)
+                while True:
+                    now = time.monotonic()
+                    if now - last_update >= 2:
+                        arduino.write(network_status.encode("ascii"))
+                        last_update = now
+                    if arduino.in_waiting:
+                        event = arduino.readline().decode("utf-8", errors="ignore").strip()
+                        if event:
+                            execute_event(event)
+                    time.sleep(0.02)
+        except (serial.SerialException, OSError) as error:
+            print(f"Arduino desconectado: {error}")
+            time.sleep(3)
+
+
+if __name__ == "__main__":
+    main()

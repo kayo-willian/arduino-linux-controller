@@ -401,7 +401,7 @@ Na raiz do repositório, em Linux com Python 3 e Bash:
 python3 -m unittest discover -s tests -v
 ```
 
-Essas verificações não precisam de Arduino, PySerial, acesso à internet ou comandos da sessão gráfica. Não substituem a compilação do firmware, os testes físicos ou a validação elétrica. Os 38 testes passaram offline com Python 3.12 e 3.13. A suíte foi adicionada após a montagem original.
+Essas verificações não precisam de Arduino, PySerial, acesso à internet ou comandos da sessão gráfica. Não substituem a compilação do firmware, os testes físicos ou a validação elétrica. Os 38 testes originais passaram offline com Python 3.12 e 3.13. Os casos de teste repetidos foram posteriormente agrupados em subtestes. A suíte foi adicionada após a montagem original.
 
 <a id="photos"></a>
 

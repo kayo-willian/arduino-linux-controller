@@ -9,45 +9,29 @@ class EndIteration(Exception):
 
 
 class NetworkTests(unittest.TestCase):
-    def check_state(self, responses, expected):
-        host = load_host()
-        host["command"] = Mock(side_effect=responses)
-        with patch("time.sleep", side_effect=EndIteration) as sleep:
-            with self.assertRaises(EndIteration):
-                host["monitor_network"]()
-        sleep.assert_called_once_with(15)
-        self.assertEqual(host["network_status"], expected)
-        self.assertEqual(host["command"].call_count, len(responses))
-        self.assertEqual(host["command"].call_args_list[0].args, ("nmcli", "-t", "-f", "STATE", "general"))
-        if len(responses) == 2:
-            self.assertEqual(host["command"].call_args_list[1].args, ("nmcli", "networking", "connectivity", "check"))
-
-    def test_full_connectivity(self):
-        self.check_state(["connected","full"], "G")
-
-    def test_limited_connectivity(self):
-        self.check_state(["connected","limited"], "Y")
-
-    def test_captive_portal(self):
-        self.check_state(["connected","portal"], "Y")
-
-    def test_no_internet(self):
-        self.check_state(["connected","none"], "Y")
-
-    def test_unknown_connectivity(self):
-        self.check_state(["connected","unknown"], "U")
-
-    def test_failed_connectivity_check(self):
-        self.check_state(["connected",None], "U")
-
-    def test_disconnected(self):
-        self.check_state(["disconnected"], "R")
-
-    def test_asleep(self):
-        self.check_state(["asleep"], "R")
-
-    def test_connecting(self):
-        self.check_state(["connecting"], "U")
-
-    def test_failed_state_check(self):
-        self.check_state([None], "U")
+    def test_network_states(self):
+        cases = [
+            (["connected", "full"], "G"),
+            (["connected", "limited"], "Y"),
+            (["connected", "portal"], "Y"),
+            (["connected", "none"], "Y"),
+            (["connected", "unknown"], "U"),
+            (["connected", None], "U"),
+            (["disconnected"], "R"),
+            (["asleep"], "R"),
+            (["connecting"], "U"),
+            ([None], "U"),
+        ]
+        for responses, expected in cases:
+            with self.subTest(responses=responses):
+                host = load_host()
+                host["command"] = Mock(side_effect=responses)
+                with patch("time.sleep", side_effect=EndIteration) as sleep:
+                    with self.assertRaises(EndIteration):
+                        host["monitor_network"]()
+                sleep.assert_called_once_with(15)
+                self.assertEqual(host["network_status"], expected)
+                self.assertEqual(host["command"].call_count, len(responses))
+                self.assertEqual(host["command"].call_args_list[0].args, ("nmcli", "-t", "-f", "STATE", "general"))
+                if len(responses) == 2:
+                    self.assertEqual(host["command"].call_args_list[1].args, ("nmcli", "networking", "connectivity", "check"))

@@ -401,7 +401,7 @@ From the repository root, on Linux with Python 3 and Bash:
 python3 -m unittest discover -s tests -v
 ```
 
-These checks do not need an Arduino, PySerial, internet access or desktop commands. They do not replace firmware compilation, physical tests or electrical validation. All 38 tests passed offline with Python 3.12 and 3.13. The suite was added after the original build.
+These checks do not need an Arduino, PySerial, internet access or desktop commands. They do not replace firmware compilation, physical tests or electrical validation. The original 38 tests passed offline with Python 3.12 and 3.13. Repeated test cases were subsequently grouped into subtests. The suite was added after the original build.
 
 <a id="photos"></a>
 

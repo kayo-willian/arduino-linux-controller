@@ -1,9 +1,5 @@
-"""Host-side unit tests without a connected Arduino.
-
-Load only imports and function definitions to avoid the production script's
-top-level network thread and serial loop. No real desktop commands are run.
-"""
-import ast
+"""Host-side tests without a connected Arduino or real desktop commands."""
+from importlib.util import module_from_spec, spec_from_file_location
 from pathlib import Path
 import subprocess
 import sys
@@ -15,15 +11,11 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def load_host():
-    source = ast.parse((ROOT / "software/painel-ubuntu.py").read_text())
-    source.body = [
-        node for node in source.body
-        if isinstance(node, (ast.Import, ast.ImportFrom, ast.FunctionDef, ast.Assign))
-    ]
-    namespace = {}
+    spec = spec_from_file_location("painel_ubuntu", ROOT / "software/painel-ubuntu.py")
+    module = module_from_spec(spec)
     with patch.dict(sys.modules, {"serial": types.ModuleType("serial")}):
-        exec(compile(source, "painel-ubuntu.py", "exec"), namespace)
-    return namespace
+        spec.loader.exec_module(module)
+    return vars(module)
 
 
 class HostTests(unittest.TestCase):
@@ -37,34 +29,24 @@ class HostTests(unittest.TestCase):
             self.assertEqual(run.call_args.kwargs["timeout"], 8)
             self.assertEqual(run.call_args.kwargs["env"]["LC_ALL"], "C")
 
-    def test_command_failure(self):
-        with patch("subprocess.run", return_value=subprocess.CompletedProcess([], 1, "", "failed")), patch("builtins.print"):
-            self.assertIsNone(self.host["command"]("example"))
+    def test_command_failures(self):
+        cases = [
+            {"return_value": subprocess.CompletedProcess([], 1, "", "failed")},
+            {"side_effect": FileNotFoundError("missing")},
+            {"side_effect": subprocess.TimeoutExpired("example", 8)},
+        ]
+        for case in cases:
+            with self.subTest(case=case), patch("subprocess.run", **case), patch("builtins.print"):
+                self.assertIsNone(self.host["command"]("example"))
 
-    def test_command_missing_executable(self):
-        with patch("subprocess.run", side_effect=FileNotFoundError("missing")), patch("builtins.print"):
-            self.assertIsNone(self.host["command"]("missing"))
-
-    def test_command_timeout(self):
-        with patch("subprocess.run", side_effect=subprocess.TimeoutExpired("example", 8)), patch("builtins.print"):
-            self.assertIsNone(self.host["command"]("example"))
-
-    def test_no_serial_device(self):
-        with patch.object(self.host["glob"], "glob", side_effect=[[], []]):
-            self.assertIsNone(self.host["find_arduino"]())
-
-    def test_acm_serial_device(self):
-        with patch.object(self.host["glob"], "glob", side_effect=[["/dev/ttyACM0"], []]):
-            self.assertEqual(self.host["find_arduino"](), "/dev/ttyACM0")
-
-    def test_usb_serial_device(self):
-        with patch.object(self.host["glob"], "glob", side_effect=[[], ["/dev/ttyUSB0"]]):
-            self.assertEqual(self.host["find_arduino"](), "/dev/ttyUSB0")
-
-    def test_ambiguous_serial_devices(self):
-        with patch.object(self.host["glob"], "glob", side_effect=[["/dev/ttyACM0"], ["/dev/ttyUSB0"]]):
-            self.assertIsNone(self.host["find_arduino"]())
-
-    def test_multiple_usb_devices(self):
-        with patch.object(self.host["glob"], "glob", side_effect=[[], ["/dev/ttyUSB0", "/dev/ttyUSB1"]]):
-            self.assertIsNone(self.host["find_arduino"]())
+    def test_serial_discovery(self):
+        cases = [
+            ([], [], None),
+            (["/dev/ttyACM0"], [], "/dev/ttyACM0"),
+            ([], ["/dev/ttyUSB0"], "/dev/ttyUSB0"),
+            (["/dev/ttyACM0"], ["/dev/ttyUSB0"], None),
+            ([], ["/dev/ttyUSB0", "/dev/ttyUSB1"], None),
+        ]
+        for acm, usb, expected in cases:
+            with self.subTest(acm=acm, usb=usb), patch.object(self.host["glob"], "glob", side_effect=[acm.copy(), usb.copy()]):
+                self.assertEqual(self.host["find_arduino"](), expected)
