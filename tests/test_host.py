@@ -50,21 +50,21 @@ class HostTests(unittest.TestCase):
             self.assertIsNone(self.host["command"]("example"))
 
     def test_no_serial_device(self):
-        with patch("glob.glob", side_effect=[[], []]):
+        with patch.object(self.host["glob"], "glob", side_effect=[[], []]):
             self.assertIsNone(self.host["find_arduino"]())
 
     def test_acm_serial_device(self):
-        with patch("glob.glob", side_effect=[["/dev/ttyACM0"], []]):
+        with patch.object(self.host["glob"], "glob", side_effect=[["/dev/ttyACM0"], []]):
             self.assertEqual(self.host["find_arduino"](), "/dev/ttyACM0")
 
     def test_usb_serial_device(self):
-        with patch("glob.glob", side_effect=[[], ["/dev/ttyUSB0"]]):
+        with patch.object(self.host["glob"], "glob", side_effect=[[], ["/dev/ttyUSB0"]]):
             self.assertEqual(self.host["find_arduino"](), "/dev/ttyUSB0")
 
     def test_ambiguous_serial_devices(self):
-        with patch("glob.glob", side_effect=[["/dev/ttyACM0"], ["/dev/ttyUSB0"]]):
+        with patch.object(self.host["glob"], "glob", side_effect=[["/dev/ttyACM0"], ["/dev/ttyUSB0"]]):
             self.assertIsNone(self.host["find_arduino"]())
 
     def test_multiple_usb_devices(self):
-        with patch("glob.glob", side_effect=[[], ["/dev/ttyUSB0", "/dev/ttyUSB1"]]):
+        with patch.object(self.host["glob"], "glob", side_effect=[[], ["/dev/ttyUSB0", "/dev/ttyUSB1"]]):
             self.assertIsNone(self.host["find_arduino"]())
