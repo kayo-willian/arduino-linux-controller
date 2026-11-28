@@ -7,7 +7,7 @@
 ![Python](https://img.shields.io/badge/Python-computador-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Licença](https://img.shields.io/badge/licen%C3%A7a-MIT-blue?style=flat-square)
 
-[English](../../README.md) | **Português (Brasil)**
+[English](../../README.md) | **Português (Brasil)** | [Todos os projetos](../../../../README.pt-BR.md)
 
 Um pequeno controlador físico para Ubuntu, montado com um kit compatível com Arduino Uno que estava parado. Eu queria algo útil no dia a dia, em vez de outro laboratório inacabado. O dispositivo controla músicas, áudio e bloqueio de tela, além de indicar a conectividade do computador por dois LEDs.
 
@@ -99,7 +99,7 @@ O painel foi construído para um computador com Ubuntu e GNOME, usando uma placa
 O `pactl` foi instalado apenas durante o diagnóstico; não é uma dependência do código final.
 
 ```text
-arduino-linux-controller/
+linux-controller/
 ├── firmware/painel_ubuntu/painel_ubuntu.ino
 ├── software/painel-ubuntu.py
 ├── diagnostics/components/components.ino
@@ -118,9 +118,7 @@ arduino-linux-controller/
 │   ├── arduino-01.jpeg ... arduino-14.jpeg
 │   └── README.md
 ├── tests/
-├── README.md
-├── LICENSE
-└── .gitignore
+└── README.md
 ```
 
 **Códigos completos:** [firmware C++](../../firmware/painel_ubuntu/painel_ubuntu.ino), [programa Python](../../software/painel-ubuntu.py), [sketch de diagnóstico](../../diagnostics/components/components.ino) e [auxiliar de autostart](../../installation/enable-autostart.sh).
@@ -193,8 +191,8 @@ O resistor de 1 kΩ foi escolhido para brilho moderado dos indicadores. Também 
 Obtenha os arquivos pelo botão **Code → Download ZIP** do GitHub ou clone o repositório:
 
 ```bash
-git clone https://github.com/kayo-willian/arduino-linux-controller.git
-cd arduino-linux-controller
+git clone https://github.com/kayo-willian/arduino-projects.git
+cd arduino-projects/projects/linux-controller
 ```
 
 ### 1. Preparar o Ubuntu
@@ -217,7 +215,7 @@ Os LEDs verde e vermelho acendem sequencialmente na inicialização. Em seguida,
 
 ### 3. Executar o programa
 
-Na raiz do repositório:
+Na raiz do projeto:
 
 ```bash
 cp software/painel-ubuntu.py ~/painel-ubuntu.py
@@ -274,7 +272,7 @@ As verificações do NetworkManager ocorrem aproximadamente a cada 15 segundos, 
 
 ### 5. Inicialização automática no login
 
-Depois dos testes manuais, encerre o processo com Ctrl+C. Execute [enable-autostart.sh](../../installation/enable-autostart.sh) na raiz do repositório:
+Depois dos testes manuais, encerre o processo com Ctrl+C. Execute [enable-autostart.sh](../../installation/enable-autostart.sh) na raiz do projeto:
 
 ```bash
 bash installation/enable-autostart.sh
@@ -395,7 +393,7 @@ O projeto termina aqui: um periférico pessoal funcional, não uma plataforma em
 
 A [suíte de testes](../../tests/) utiliza a biblioteca padrão do Python para exercitar comandos do computador e estados de rede com simulações, verificar o contrato estático do firmware, testar a instalação automática em um diretório pessoal temporário isolado e verificar links locais e a estrutura bilíngue da documentação.
 
-Na raiz do repositório, em Linux com Python 3 e Bash:
+Na raiz do projeto, em Linux com Python 3 e Bash:
 
 ```bash
 python3 -m unittest discover -s tests -v
@@ -430,7 +428,7 @@ Eu realizei a montagem, alterei as ligações, gravei o firmware e testei o disp
 
 As versões separadas da documentação continuam disponíveis para consulta: [hardware](componentes-e-montagem.md), [instalação](instalacao.md) e [diário de desenvolvimento](desenvolvimento.md). Todo o conteúdo necessário para reproduzir o projeto está neste README.
 
-Licenciado sob a [MIT](../../LICENSE).
+Licenciado sob a [MIT](../../../../LICENSE).
 
 ### Créditos
 

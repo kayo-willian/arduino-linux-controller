@@ -22,7 +22,7 @@ Os LEDs verde e vermelho acendem sequencialmente na inicialização. Em seguida,
 
 ## 3. Executar o programa
 
-Na raiz do repositório:
+Na raiz do projeto:
 
 ```bash
 cp software/painel-ubuntu.py ~/painel-ubuntu.py
@@ -79,7 +79,7 @@ As verificações do NetworkManager ocorrem aproximadamente a cada 15 segundos, 
 
 ## 5. Inicialização automática no login
 
-Depois dos testes manuais, encerre o processo com Ctrl+C. Execute [enable-autostart.sh](../../installation/enable-autostart.sh) na raiz do repositório:
+Depois dos testes manuais, encerre o processo com Ctrl+C. Execute [enable-autostart.sh](../../installation/enable-autostart.sh) na raiz do projeto:
 
 ```bash
 bash installation/enable-autostart.sh

@@ -22,7 +22,7 @@ The green and red LEDs light sequentially at startup. The red LED then blinks un
 
 ## 3. Run the host program
 
-From the repository root:
+From the project root:
 
 ```bash
 cp software/painel-ubuntu.py ~/painel-ubuntu.py
@@ -79,7 +79,7 @@ NetworkManager checks run approximately every 15 seconds, plus command runtime; 
 
 ## 5. Autostart on desktop login
 
-Once manual tests pass, stop the foreground process with Ctrl+C. Run [enable-autostart.sh](../installation/enable-autostart.sh) from the repository root:
+Once manual tests pass, stop the foreground process with Ctrl+C. Run [enable-autostart.sh](../installation/enable-autostart.sh) from the project root:
 
 ```bash
 bash installation/enable-autostart.sh

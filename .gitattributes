@@ -1,2 +1,2 @@
 # Exclude automated tests from GitHub language statistics.
-tests/** -linguist-detectable
+projects/**/tests/** -linguist-detectable
